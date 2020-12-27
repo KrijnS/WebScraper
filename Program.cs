@@ -16,9 +16,10 @@ namespace WebScraper
             string destinationPlayers = "../../players.txt";
             string playerIdentifier = "<a href=" + '\u0022' + "/en/fifa21/career-mode/player/";
 
+            program.ReadURLInTemp("https://www.futwiz.com/en/fifa21/career-mode/players?minrating=1&maxrating=99&teams%5B%5D=21&leagues[]=19&order=rating&s=desc");
+            program.FilterOnString("<a href=\u0022/en/fifa21/career-mode/player/", "../../temp.txt");
             // get all budgets
             string[] leagues = File.ReadAllLines("../../leagues.txt");
-            program.GetLeagues();
             //for (int i = 0; i < leagues.Length; i++)
             //{
             ////    /*get all budgets */
@@ -74,6 +75,17 @@ namespace WebScraper
             return result;
         }
 
+        public void GetPlayers()
+        {
+            string destination = "../../players.txt";
+            string identifier = "<td width=+ '\u0022' + 5% + '\u0022' + class=+ '\u0022' + face+ '\u0022' + >";
+            string[] teams = File.ReadAllLines("../../teams.txt");
+            for (int i = 0; i < teams.Length; i++)
+            {
+                GetPages("https://futwiz.com" + teams[i], destination, identifier, 2);
+            }
+        }
+
         public string GetLeagueName(string url, string localUrl)
         {
             return GetString(url, "<a href=" + '\u0022' + localUrl, '>').Split('<')[0];
@@ -105,7 +117,7 @@ namespace WebScraper
             byte[] bytes = Encoding.Default.GetBytes(leagueName);
             leagueName = Encoding.UTF8.GetString(bytes);
             int teamAmount = CheckNumberOfLineStarts(url, "<h5>");
-            return leagueName + "," + teamAmount;
+            return leagueName + " #teams " + teamAmount;
         }
 
         public void ParseAllLeagues()
@@ -167,6 +179,29 @@ namespace WebScraper
             return values;
         }
 
+        public void ReadURLInTemp(string url)
+        {
+            WebClient client = new WebClient();
+            client.Headers.Add("User-Agent", "C# console program");
+            string fileName = "../../temp.txt";
+
+            string content = client.DownloadString(url);
+            File.WriteAllText(fileName, content);
+        }
+
+        public void FilterOnString(string filter, string file)
+        {
+            string[] strings = File.ReadAllLines(file);
+            StringBuilder filteredStrings = new StringBuilder();
+            for(int i = 0; i < strings.Length; i++)
+            {
+                if (strings[i].StartsWith(filter))
+                {
+                    filteredStrings.Append(strings[i].Split('\u0022')[1] + Environment.NewLine);
+                }
+            }
+            File.WriteAllText(file, filteredStrings.ToString());
+        }
         //public string GetBudgets()
         //{
             
