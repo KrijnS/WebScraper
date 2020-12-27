@@ -16,14 +16,16 @@ namespace WebScraper
             //string destinationPlayers = "../../players.txt";
             string playerIdentifier = "<a href=" + '\u0022' + "/en/fifa21/career-mode/player/";
 
-            Console.WriteLine(program.GetNumberOfPlayers("https://www.futwiz.com/en/fifa21/career-mode/players?minrating=1&maxrating=99&teams%5B%5D=21&leagues[]=19&order=rating&s=desc"));
+            double[] budgets = program.GetBudgets("/en/fifa21/career-mode/teams?l=19");
+            for(int i = 0; i < budgets.Length; i++) { Console.WriteLine(budgets[i]); }
+
+            //Console.WriteLine(program.GetNumberOfPlayers("https://www.futwiz.com/en/fifa21/career-mode/players?minrating=1&maxrating=99&teams%5B%5D=21&leagues[]=19&order=rating&s=desc"));
             //program.ReadPlayerLinks("https://www.futwiz.com/en/fifa21/career-mode/players?minrating=1&maxrating=99&teams%5B%5D=21&leagues[]=19&order=rating&s=desc");
             // get all budgets
             //string[] leagues = File.ReadAllLines("../../leagues.txt");
             //for (int i = 0; i < leagues.Length; i++)
             //{
             ////    /*get all budgets */
-            //    string[] values = program.GetAllOccurences("https://www.futwiz.com" + leagues[i], "<p>Budget <strong>", '>', 2);
             //    //    /* access all budgets*/
             //    for (int j = 0; j < values.Length; j++) { if (values[j] != null) { Console.WriteLine(i + ". " + values[j].Split('<')[0].Remove(0, 1)); } }/*.Split('<')[0].Remove(0, 1)*/ 
             //}
@@ -228,9 +230,25 @@ namespace WebScraper
             return CheckNumberOfLineStarts(url, "<a href=\u0022/en/fifa21/career-mode/player/") / 2;
         }
 
-        //public string GetBudgets()
-        //{
-            
-        //}
+        public double[] GetBudgets(string url)
+        {
+            string[] values = GetAllOccurences("https://www.futwiz.com" + url, "<p>Budget <strong>", '>', 2);
+            double[] budgets = new double[values.Length];
+            for (int i = 0; i < values.Length; i++)
+            {
+                budgets[i] = ConvertBudget(values[i]);
+            }
+            return budgets;
+        }
+
+        public double ConvertBudget(string value)
+        {
+            double budget = 0;
+            value = value.Split('<')[0].Remove(0, 1).Split('\u00A3')[1];
+            if (value.Contains("M")) { value = value.Split('M')[0]; budget = Convert.ToDouble(value) * 1000000; }
+            else if (value.Contains("K")) { value = value.Split('K')[0]; budget = Convert.ToDouble(value) * 1000; }
+            if (value.Contains(".")) { budget /= 10; }
+            return budget;
+        }
     }
 }
