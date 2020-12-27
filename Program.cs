@@ -12,14 +12,14 @@ namespace WebScraper
         static void Main(string[] args)
         {
             Program program = new Program();
-            string urlPlayers = "https://www.futwiz.com/en/fifa21/career-mode/players?minrating=1&maxrating=99&teams%5B%5D=246&leagues[]=10&order=rating&s=desc";
-            string destinationPlayers = "../../players.txt";
+            //string urlPlayers = "https://www.futwiz.com/en/fifa21/career-mode/players?minrating=1&maxrating=99&teams%5B%5D=246&leagues[]=10&order=rating&s=desc";
+            //string destinationPlayers = "../../players.txt";
             string playerIdentifier = "<a href=" + '\u0022' + "/en/fifa21/career-mode/player/";
 
-            program.ReadURLInTemp("https://www.futwiz.com/en/fifa21/career-mode/players?minrating=1&maxrating=99&teams%5B%5D=21&leagues[]=19&order=rating&s=desc");
-            program.FilterOnString("<a href=\u0022/en/fifa21/career-mode/player/", "../../temp.txt");
+            Console.WriteLine(program.GetNumberOfPlayers("https://www.futwiz.com/en/fifa21/career-mode/players?minrating=1&maxrating=99&teams%5B%5D=21&leagues[]=19&order=rating&s=desc"));
+            //program.ReadPlayerLinks("https://www.futwiz.com/en/fifa21/career-mode/players?minrating=1&maxrating=99&teams%5B%5D=21&leagues[]=19&order=rating&s=desc");
             // get all budgets
-            string[] leagues = File.ReadAllLines("../../leagues.txt");
+            //string[] leagues = File.ReadAllLines("../../leagues.txt");
             //for (int i = 0; i < leagues.Length; i++)
             //{
             ////    /*get all budgets */
@@ -183,10 +183,9 @@ namespace WebScraper
         {
             WebClient client = new WebClient();
             client.Headers.Add("User-Agent", "C# console program");
-            string fileName = "../../temp.txt";
 
             string content = client.DownloadString(url);
-            File.WriteAllText(fileName, content);
+            File.WriteAllText(tempFile, content);
         }
 
         public void FilterOnString(string filter, string file)
@@ -202,6 +201,33 @@ namespace WebScraper
             }
             File.WriteAllText(file, filteredStrings.ToString());
         }
+
+        public StringBuilder DeleteDuplicatePlayerLinks(string file)
+        {
+            string[] strings = File.ReadAllLines(file);
+            StringBuilder filteredStrings = new StringBuilder();
+            for (int i = 0; i < strings.Length; i++)
+            {
+                if (i%2 == 0)
+                {
+                    filteredStrings.Append(strings[i] + Environment.NewLine);
+                }
+            }
+            return filteredStrings;
+        }
+
+        public void ReadPlayerLinks(string url)
+        {
+            ReadURLInTemp(url);
+            FilterOnString("<a href=\u0022/en/fifa21/career-mode/player/", tempFile);
+            File.AppendAllText("../../players.txt" , DeleteDuplicatePlayerLinks(tempFile).ToString());
+        }
+
+        public int GetNumberOfPlayers(string url)
+        {
+            return CheckNumberOfLineStarts(url, "<a href=\u0022/en/fifa21/career-mode/player/") / 2;
+        }
+
         //public string GetBudgets()
         //{
             
