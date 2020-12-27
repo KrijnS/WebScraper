@@ -8,19 +8,29 @@ namespace WebScraper
 {
     class Program
     {
-        public string tempFile = @"C:\Users\Krijn\Documents\temp.txt";
+        public string tempFile = "../../temp.txt";
         static void Main(string[] args)
         {
             Program program = new Program();
-            string urlPlayers = "https://www.futwiz.com/en/fifa20/career-mode/players?minrating=1&maxrating=99&teams%5B%5D=246&leagues[]=10&order=rating&s=desc";
-            string destinationPlayers = @"C:\Users\Krijn\Documents\players.txt";
-            string playerIdentifier = "<a href=" + '\u0022' + "/en/fifa20/career-mode/player/";
+            string urlPlayers = "https://www.futwiz.com/en/fifa21/career-mode/players?minrating=1&maxrating=99&teams%5B%5D=246&leagues[]=10&order=rating&s=desc";
+            string destinationPlayers = "../../players.txt";
+            string playerIdentifier = "<a href=" + '\u0022' + "/en/fifa21/career-mode/player/";
 
-            program.ParseAllLeagues();
+            // get all budgets
+            string[] leagues = File.ReadAllLines("../../leagues.txt");
+            program.GetLeagues();
+            //for (int i = 0; i < leagues.Length; i++)
+            //{
+            ////    /*get all budgets */
+            //    string[] values = program.GetAllOccurences("https://www.futwiz.com" + leagues[i], "<p>Budget <strong>", '>', 2);
+            //    //    /* access all budgets*/
+            //    for (int j = 0; j < values.Length; j++) { if (values[j] != null) { Console.WriteLine(i + ". " + values[j].Split('<')[0].Remove(0, 1)); } }/*.Split('<')[0].Remove(0, 1)*/ 
+            //}
+            //program.ParseAllLeagues();
             //program.GetPages(urlPlayers, destinationPlayers, playerIdentifier, 2);
-            //league name Console.WriteLine(program.GetString("https://www.futwiz.com/en/fifa20/career-mode/teams?l=330", "<a href=" + '\u0022' + "/en/fifa20/career-mode/teams?l=330", '>').Split('<')[0]);
-            //player name Console.WriteLine(program.GetString("https://www.futwiz.com/en/fifa20/career-mode/player/steven-berghuis/3796", "<h1>", '>').Split('<')[0]);
-            //player nation Console.WriteLine(program.GetString("https://www.futwiz.com/en/fifa20/career-mode/player/steven-berghuis/3796", "<div style=" + '\u0022' + "font-size:14px;", '>', 1).Split('|')[0]);
+            //league name Console.WriteLine(program.GetString("https://www.futwiz.com/en/fifa21/career-mode/teams?l=330", "<a href=" + '\u0022' + "/en/fifa21/career-mode/teams?l=330", '>').Split('<')[0]);
+            //player name Console.WriteLine(program.GetString("https://www.futwiz.com/en/fifa21/career-mode/player/steven-berghuis/3796", "<h1>", '>').Split('<')[0]);
+            //player nation Console.WriteLine(program.GetString("https://www.futwiz.com/en/fifa21/career-mode/player/steven-berghuis/3796", "<div style=" + '\u0022' + "font-size:14px;", '>', 1).Split('|')[0]);
             Console.WriteLine("done");
             Console.Read();
         }
@@ -58,7 +68,7 @@ namespace WebScraper
             {
                 if (lines[i].StartsWith(identifier))
                 {
-                    result = lines[i].Split(split)[1];
+                    return lines[i].Split(split)[1];
                 }
             }
             return result;
@@ -72,39 +82,41 @@ namespace WebScraper
 
         public void GetLeagues()
         {
-            string url = "https://www.futwiz.com/en/fifa20/career-mode/teams?l=19";
-            string destination = @"C:\Users\Krijn\Documents\leagues.txt";
-            string identifier = "<a href=" + '\u0022' + "/en/fifa20/career-mode/teams";
+            string url = "https://www.futwiz.com/en/fifa21/career-mode/teams?l=19";
+            string destination = "../../leagues.txt";
+            string identifier = "<a href=" + '\u0022' + "/en/fifa21/career-mode/teams";
             GetPages(url, destination, identifier, 1);
         }
 
         public void GetTeams()
         {
-            string destination = @"C:\Users\Krijn\Documents\teams.txt";
+            string destination = "../../teams.txt";
             string identifier = "<h5>";
-            string[] leagues = File.ReadAllLines(@"C:\Users\Krijn\Documents\leagues.txt");
+            string[] leagues = File.ReadAllLines("../../leagues.txt");
             for(int i = 0; i < leagues.Length; i++)
             {
                 GetPages("https://futwiz.com" + leagues[i], destination, identifier, 1);
             }
         }
 
-        public void ParseLeague(string url, string localUrl)
+        public string ParseLeague(string url, string localUrl)
         {
             string leagueName = GetLeagueName(url, localUrl);
             byte[] bytes = Encoding.Default.GetBytes(leagueName);
             leagueName = Encoding.UTF8.GetString(bytes);
             int teamAmount = CheckNumberOfLineStarts(url, "<h5>");
-            Console.WriteLine(leagueName + " " + teamAmount);
+            return leagueName + "," + teamAmount;
         }
 
         public void ParseAllLeagues()
         {
-            string[] leagues = File.ReadAllLines(@"C:\Users\Krijn\Documents\leagues.txt");
+            StringBuilder output = new StringBuilder();
+            string[] leagues = File.ReadAllLines("../../leagues.txt");
             for(int i = 0; i < leagues.Length; i++)
             {
-                ParseLeague("http://futwiz.com" + leagues[i], leagues[i]);
+                output.Append(i + "," + ParseLeague("http://futwiz.com" + leagues[i], leagues[i]) + Environment.NewLine);
             }
+            Console.WriteLine(output);
         }
 
         public int CheckNumberOfLineStarts(string url, string lineStart)
@@ -125,5 +137,39 @@ namespace WebScraper
             }
             return number;
         }
+
+        public string[] GetAllOccurences(string url, string identifier, char split, int splitNumber)
+        {
+            string[] values = new string[CheckNumberOfLineStarts(url, identifier)];
+            int index = 0;
+            WebClient client = new WebClient();
+            client.Headers.Add("User-Agent", "C# console program");
+
+            string content = client.DownloadString(url);
+            File.WriteAllText(tempFile, content);
+            string[] lines = File.ReadAllLines(tempFile);
+            for (int i = 0; i < lines.Length; i++)
+            {
+                if (lines[i].StartsWith(identifier))
+                {
+                    if(lines[i].Split(split).Length <= splitNumber)
+                    {
+                        break;
+                    }
+                    if(values.Length > index)
+                    {
+                        values[index] = lines[i].Split(split)[splitNumber];
+                        index++;
+                    }                   
+                }
+            }
+
+            return values;
+        }
+
+        //public string GetBudgets()
+        //{
+            
+        //}
     }
 }
