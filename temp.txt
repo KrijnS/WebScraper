@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" /><script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={licenseKey:"d52dd270f3",applicationID:"295558491"};window.NREUM||(NREUM={}),__nr_require=function(e,t,n){function r(n){if(!t[n]){var i=t[n]={exports:{}};e[n][0].call(i.exports,function(t){var i=e[n][1][t];return r(i||t)},i,i.exports)}return t[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var i=0;i<n.length;i++)r(n[i]);return r}({1:[function(e,t,n){function r(){}function i(e,t,n){return function(){return o(e,[u.now()].concat(c(arguments)),t?null:this,n),t?void 0:this}}var o=e("handle"),a=e(6),c=e(7),f=e("ee").get("tracer"),u=e("loader"),s=NREUM;"undefined"==typeof window.newrelic&&(newrelic=s);var d=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],p="api-",l=p+"ixn-";a(d,function(e,t){s[t]=i(p+t,!0,"api")}),s.addPageAction=i(p+"addPageAction",!0),s.setCurrentRouteName=i(p+"routeName",!0),t.exports=newrelic,s.interaction=function(){return(new r).get()};var m=r.prototype={createTracer:function(e,t){var n={},r=this,i="function"==typeof t;return o(l+"tracer",[u.now(),e,n],r),function(){if(f.emit((i?"":"no-")+"fn-start",[u.now(),r,i],n),i)try{return t.apply(this,arguments)}catch(e){throw f.emit("fn-err",[arguments,this,e],n),e}finally{f.emit("fn-end",[u.now()],n)}}}};a("actionText,setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(e,t){m[t]=i(l+t)}),newrelic.noticeError=function(e,t){"string"==typeof e&&(e=new Error(e)),o("err",[e,u.now(),!1,t])}},{}],2:[function(e,t,n){function r(){return c.exists&&performance.now?Math.round(performance.now()):(o=Math.max((new Date).getTime(),o))-a}function i(){return o}var o=(new Date).getTime(),a=o,c=e(8);t.exports=r,t.exports.offset=a,t.exports.getLastTimestamp=i},{}],3:[function(e,t,n){function r(e,t){var n=e.getEntries();n.forEach(function(e){"first-paint"===e.name?d("timing",["fp",Math.floor(e.startTime)]):"first-contentful-paint"===e.name&&d("timing",["fcp",Math.floor(e.startTime)])})}function i(e,t){var n=e.getEntries();n.length>0&&d("lcp",[n[n.length-1]])}function o(e){e.getEntries().forEach(function(e){e.hadRecentInput||d("cls",[e])})}function a(e){if(e instanceof m&&!g){var t=Math.round(e.timeStamp),n={type:e.type};t<=p.now()?n.fid=p.now()-t:t>p.offset&&t<=Date.now()?(t-=p.offset,n.fid=p.now()-t):t=p.now(),g=!0,d("timing",["fi",t,n])}}function c(e){d("pageHide",[p.now(),e])}if(!("init"in NREUM&&"page_view_timing"in NREUM.init&&"enabled"in NREUM.init.page_view_timing&&NREUM.init.page_view_timing.enabled===!1)){var f,u,s,d=e("handle"),p=e("loader"),l=e(5),m=NREUM.o.EV;if("PerformanceObserver"in window&&"function"==typeof window.PerformanceObserver){f=new PerformanceObserver(r);try{f.observe({entryTypes:["paint"]})}catch(v){}u=new PerformanceObserver(i);try{u.observe({entryTypes:["largest-contentful-paint"]})}catch(v){}s=new PerformanceObserver(o);try{s.observe({type:"layout-shift",buffered:!0})}catch(v){}}if("addEventListener"in document){var g=!1,y=["click","keydown","mousedown","pointerdown","touchstart"];y.forEach(function(e){document.addEventListener(e,a,!1)})}l(c)}},{}],4:[function(e,t,n){function r(e,t){if(!i)return!1;if(e!==i)return!1;if(!t)return!0;if(!o)return!1;for(var n=o.split("."),r=t.split("."),a=0;a<r.length;a++)if(r[a]!==n[a])return!1;return!0}var i=null,o=null,a=/Version\/(\S+)\s+Safari/;if(navigator.userAgent){var c=navigator.userAgent,f=c.match(a);f&&c.indexOf("Chrome")===-1&&c.indexOf("Chromium")===-1&&(i="Safari",o=f[1])}t.exports={agent:i,version:o,match:r}},{}],5:[function(e,t,n){function r(e){function t(){e(a&&document[a]?document[a]:document[i]?"hidden":"visible")}"addEventListener"in document&&o&&document.addEventListener(o,t,!1)}t.exports=r;var i,o,a;"undefined"!=typeof document.hidden?(i="hidden",o="visibilitychange",a="visibilityState"):"undefined"!=typeof document.msHidden?(i="msHidden",o="msvisibilitychange"):"undefined"!=typeof document.webkitHidden&&(i="webkitHidden",o="webkitvisibilitychange",a="webkitVisibilityState")},{}],6:[function(e,t,n){function r(e,t){var n=[],r="",o=0;for(r in e)i.call(e,r)&&(n[o]=t(r,e[r]),o+=1);return n}var i=Object.prototype.hasOwnProperty;t.exports=r},{}],7:[function(e,t,n){function r(e,t,n){t||(t=0),"undefined"==typeof n&&(n=e?e.length:0);for(var r=-1,i=n-t||0,o=Array(i<0?0:i);++r<i;)o[r]=e[t+r];return o}t.exports=r},{}],8:[function(e,t,n){t.exports={exists:"undefined"!=typeof window.performance&&window.performance.timing&&"undefined"!=typeof window.performance.timing.navigationStart}},{}],ee:[function(e,t,n){function r(){}function i(e){function t(e){return e&&e instanceof r?e:e?f(e,c,o):o()}function n(n,r,i,o){if(!p.aborted||o){e&&e(n,r,i);for(var a=t(i),c=v(n),f=c.length,u=0;u<f;u++)c[u].apply(a,r);var d=s[w[n]];return d&&d.push([b,n,r,a]),a}}function l(e,t){h[e]=v(e).concat(t)}function m(e,t){var n=h[e];if(n)for(var r=0;r<n.length;r++)n[r]===t&&n.splice(r,1)}function v(e){return h[e]||[]}function g(e){return d[e]=d[e]||i(n)}function y(e,t){u(e,function(e,n){t=t||"feature",w[n]=t,t in s||(s[t]=[])})}var h={},w={},b={on:l,addEventListener:l,removeEventListener:m,emit:n,get:g,listeners:v,context:t,buffer:y,abort:a,aborted:!1};return b}function o(){return new r}function a(){(s.api||s.feature)&&(p.aborted=!0,s=p.backlog={})}var c="nr@context",f=e("gos"),u=e(6),s={},d={},p=t.exports=i();p.backlog=s},{}],gos:[function(e,t,n){function r(e,t,n){if(i.call(e,t))return e[t];var r=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,t,{value:r,writable:!0,enumerable:!1}),r}catch(o){}return e[t]=r,r}var i=Object.prototype.hasOwnProperty;t.exports=r},{}],handle:[function(e,t,n){function r(e,t,n,r){i.buffer([e],r),i.emit(e,t,n)}var i=e("ee").get("handle");t.exports=r,r.ee=i},{}],id:[function(e,t,n){function r(e){var t=typeof e;return!e||"object"!==t&&"function"!==t?-1:e===window?0:a(e,o,function(){return i++})}var i=1,o="nr@id",a=e("gos");t.exports=r},{}],loader:[function(e,t,n){function r(){if(!E++){var e=b.info=NREUM.info,t=p.getElementsByTagName("script")[0];if(setTimeout(u.abort,3e4),!(e&&e.licenseKey&&e.applicationID&&t))return u.abort();f(h,function(t,n){e[t]||(e[t]=n)});var n=a();c("mark",["onload",n+b.offset],null,"api"),c("timing",["load",n]);var r=p.createElement("script");r.src="https://"+e.agent,t.parentNode.insertBefore(r,t)}}function i(){"complete"===p.readyState&&o()}function o(){c("mark",["domContent",a()+b.offset],null,"api")}var a=e(2),c=e("handle"),f=e(6),u=e("ee"),s=e(4),d=window,p=d.document,l="addEventListener",m="attachEvent",v=d.XMLHttpRequest,g=v&&v.prototype;NREUM.o={ST:setTimeout,SI:d.setImmediate,CT:clearTimeout,XHR:v,REQ:d.Request,EV:d.Event,PR:d.Promise,MO:d.MutationObserver};var y=""+location,h={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1184.min.js"},w=v&&g&&g[l]&&!/CriOS/.test(navigator.userAgent),b=t.exports={offset:a.getLastTimestamp(),now:a,origin:y,features:{},xhrWrappable:w,userAgent:s};e(1),e(3),p[l]?(p[l]("DOMContentLoaded",o,!1),d[l]("load",r,!1)):(p[m]("onreadystatechange",i),d[m]("onload",r)),c("mark",["firstbyte",a.getLastTimestamp()],null,"api");var E=0},{}],"wrap-function":[function(e,t,n){function r(e){return!(e&&e instanceof Function&&e.apply&&!e[a])}var i=e("ee"),o=e(7),a="nr@original",c=Object.prototype.hasOwnProperty,f=!1;t.exports=function(e,t){function n(e,t,n,i){function nrWrapper(){var r,a,c,f;try{a=this,r=o(arguments),c="function"==typeof n?n(r,a):n||{}}catch(u){p([u,"",[r,a,i],c])}s(t+"start",[r,a,i],c);try{return f=e.apply(a,r)}catch(d){throw s(t+"err",[r,a,d],c),d}finally{s(t+"end",[r,a,f],c)}}return r(e)?e:(t||(t=""),nrWrapper[a]=e,d(e,nrWrapper),nrWrapper)}function u(e,t,i,o){i||(i="");var a,c,f,u="-"===i.charAt(0);for(f=0;f<t.length;f++)c=t[f],a=e[c],r(a)||(e[c]=n(a,u?c+i:i,o,c))}function s(n,r,i){if(!f||t){var o=f;f=!0;try{e.emit(n,r,i,t)}catch(a){p([a,n,r,i])}f=o}}function d(e,t){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(e);return n.forEach(function(n){Object.defineProperty(t,n,{get:function(){return e[n]},set:function(t){return e[n]=t,t}})}),t}catch(r){p([r])}for(var i in e)c.call(e,i)&&(t[i]=e[i]);return t}function p(t){try{e.emit("internal-error",t)}catch(n){}}return e||(e=i),n.inPlace=u,n.flag=a,n}},{}]},{},["loader"]);</script>
-<title>FIFA 21 Germany 1. Bundesliga (1) Career Mode Teams | FUTWIZ</title>
+<title>Charles Traore FIFA 21 Career Mode Potential - 71 Rated - FUTWIZ</title>
 <link rel="preconnect" href="https://tags.bkrtx.com/">
 <link rel="preconnect" href="https://securepubads.g.doubleclick.net/" crossorigin>
 <link rel="preconnect" href="https://cmp.network-n.com/" crossorigin>
 <meta content='width=device-width' name='viewport' />
-<meta name="description" content="Find the highest starting budgets for all FIFA 21 Germany 1. Bundesliga (1) career mode teams and leagues">
-<link rel="canonical" href="https://www.futwiz.com/en/fifa21/career-mode/teams" />
+<meta name="description" content="Charles Traore potential and stats for FIFA 21 Career Mode">
+<link rel="canonical" href="https://www.futwiz.com/en/fifa21/career-mode/player/steven-berghuis/3796" />
 </script>
 <style>
         body {
@@ -50,14 +50,14 @@
 <script src="/assets/js/jquery.js"></script>
 <script src="/assets/js/futwiz.js"></script>
 </head>
-<body class="nations">
+<body class="player">
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-54KXCCF"
         height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="ad" id="nn_skinl"></div>
 <div class="ad" id="nn_skinr"></div>
 <nav id="menu" style="display:none;">
 <ul>
-<li><a href="/en/login?return=/en/fifa21/career-mode/teams?l=19">Login or Sign Up</a></li>
+<li><a href="/en/login?return=/en/fifa21/career-mode/player/steven-berghuis/3796">Login or Sign Up</a></li>
 <li class="sub">
  <a href="Javascript:;">Players <i class="fa fa-chevron-right"></i></a>
 <ul class="menu">
@@ -376,7 +376,7 @@ Twitter
 </a>
 </li>
 <li class="icons-990">
-<a href="/en/login?return=/en/fifa21/career-mode/teams?l=19">Login</a>
+<a href="/en/login?return=/en/fifa21/career-mode/player/steven-berghuis/3796">Login</a>
 </li>
 </ul>
 </li>
@@ -413,14 +413,14 @@ Twitter
 <nav class="sub">
 <ul>
 <li>
-<a href="/en/fifa21/totw/"></a>
+<a href="/en/fifa21/totw/rttf-3">RTTF 3</a>
 </li>
 <li>
 <a href="/en/fifa21/all-totws">
 TOTW Archive
 </a>
 </li>
-<li class="hide-540">
+ <li class="hide-540">
 <a href="/en/fifa21/players/latest">
 Latest FIFA 21 Players
 </a>
@@ -435,17 +435,6 @@ Latest FIFA 21 Players
 </div>
 </header>
 <main id="panel">
-<div class="headertitle">
-<div class="overlay"></div>
-<div class="content">
-<div class="main-page-title text-left" style="background:none;padding:5px;">
-<div class="wrap">
-<h1 style="font-weight:400;">FIFA 21 Germany 1. Bundesliga (1) Career Mode</h1>
-<h2>FIFA 21 Career Mode Team Starting Budgets</h2>
-</div>
-</div>
-</div>
-</div>
 <div class="top-ad-placement" style="padding-top:0px;padding-bottom:0px;">
 <div class="overlay"></div>
 <div class="content">
@@ -510,518 +499,591 @@ Sell For
 <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
 </div>
 </div><div class="main-content background-dark">
-<div class="mobilefilterbar">
 <div class="wrap">
-<ul>
-<li>
-<a href="Javascript:;" data-menu="league">League</a>
-</li>
-</ul>
-</div>
-</div>
-<div class="filterbar">
-<div class="wrap">
-<ul>
-<li class="filter-dropdown">
-<a href="Javascript:;">League <i class="fa fa-caret-down"></i></a>
-<div class="filter-dropdown-menu" style="max-height:300px;overflow:auto;">
-<a href="/en/fifa21/career-mode/teams?l=353">Argentina Primera Division (1)</a>
-<a href="/en/fifa21/career-mode/teams?l=351">Australia A-League (1)</a>
- <a href="/en/fifa21/career-mode/teams?l=80">Austria Bundesliga (1)</a>
-<a href="/en/fifa21/career-mode/teams?l=4">Belgium Pro League (1)</a>
-<a href="/en/fifa21/career-mode/teams?l=7">Brazil Serie A (1)</a>
-<a href="/en/fifa21/career-mode/teams?l=1003">CONMEBOL Libertadores</a>
-<a href="/en/fifa21/career-mode/teams?l=1014">CONMEBOL Sudamericana</a>
-<a href="/en/fifa21/career-mode/teams?l=2012">China Super League (1)</a>
-<a href="/en/fifa21/career-mode/teams?l=317">Croatia Prva HNL (1)</a>
-<a href="/en/fifa21/career-mode/teams?l=319">Czech Republic HET Liga (1)</a>
-<a href="/en/fifa21/career-mode/teams?l=1">Denmark Superliga (1)</a>
-<a href="/en/fifa21/career-mode/teams?l=14">England Championship (2)</a>
-<a href="/en/fifa21/career-mode/teams?l=60">England League One (3)</a>
-<a href="/en/fifa21/career-mode/teams?l=61">England League Two (4)</a>
-<a href="/en/fifa21/career-mode/teams?l=13">England Premier League (1)</a>
-<a href="/en/fifa21/career-mode/teams?l=2179">FUT Calcio B</a>
-<a href="/en/fifa21/career-mode/teams?l=322">Finland Veikkausliiga (1)</a>
-<a href="/en/fifa21/career-mode/teams?l=16">France Ligue 1 (1)</a>
-<a href="/en/fifa21/career-mode/teams?l=17">France Ligue 2 (2)</a>
-<a href="/en/fifa21/career-mode/teams?l=19">Germany 1. Bundesliga (1)</a>
-<a href="/en/fifa21/career-mode/teams?l=20">Germany 2. Bundesliga (2)</a>
-<a href="/en/fifa21/career-mode/teams?l=2076">Germany 3. Liga (3)</a>
-<a href="/en/fifa21/career-mode/teams?l=10">Holland Eredivisie (1)</a>
-<a href="/en/fifa21/career-mode/teams?l=78">International</a>
-<a href="/en/fifa21/career-mode/teams?l=31">Italy Serie A (1)</a>
-<a href="/en/fifa21/career-mode/teams?l=349">Japan J1 League (1)</a>
-<a href="/en/fifa21/career-mode/teams?l=83">Korea K League 1 (1)</a>
-<a href="/en/fifa21/career-mode/teams?l=341">Mexico Liga MX (1)</a>
-<a href="/en/fifa21/career-mode/teams?l=41">Norway Eliteserien (1)</a>
-<a href="/en/fifa21/career-mode/teams?l=66">Poland Ekstraklasa (1)</a>
-<a href="/en/fifa21/career-mode/teams?l=308">Portugal Primeira Liga (1)</a>
-<a href="/en/fifa21/career-mode/teams?l=65">Rep. Ireland Premier Division (1)</a>
-<a href="/en/fifa21/career-mode/teams?l=76">Rest of World</a>
-<a href="/en/fifa21/career-mode/teams?l=330">Romania Liga I (1)</a>
-<a href="/en/fifa21/career-mode/teams?l=3006">Russia FUT League</a>
-<a href="/en/fifa21/career-mode/teams?l=350">Saudi Pro League (1)</a>
-<a href="/en/fifa21/career-mode/teams?l=50">Scotland Premiership (1)</a>
-<a href="/en/fifa21/career-mode/teams?l=347">South Africa Premier SL (1)</a>
-<a href="/en/fifa21/career-mode/teams?l=53">Spain Primera DivisiÃ³n (1)</a>
-<a href="/en/fifa21/career-mode/teams?l=54">Spain Segunda DivisiÃ³n (2)</a>
-<a href="/en/fifa21/career-mode/teams?l=56">Sweden Allsvenskan (1)</a>
-<a href="/en/fifa21/career-mode/teams?l=189">Switzerland Super League (1)</a>
-<a href="/en/fifa21/career-mode/teams?l=68">Turkey SÃ¼per Lig (1)</a>
-<a href="/en/fifa21/career-mode/teams?l=2172">UAE FUT League</a>
-<a href="/en/fifa21/career-mode/teams?l=39">USA Major League Soccer (1)</a>
-<a href="/en/fifa21/career-mode/teams?l=332">Ukraine Premier Liga (1)</a>
-</div>
-</li>
-</ul>
-</div>
-</div>
-<div class="mobilefiltermenu" id="mobmenuleague">
-<div class="mobilefilter-heading">League<a href="Javascript:;" onclick="$('#mobmenuleague').hide();$('.filter-overlay').remove();" class="mobilefilterclose"><i class="fa fa-times"></i></a></div>
-<a href="/en/fifa21/career-mode/teams?l=353">Argentina Primera Division (1)</a>
-<a href="/en/fifa21/career-mode/teams?l=351">Australia A-League (1)</a>
-<a href="/en/fifa21/career-mode/teams?l=80">Austria Bundesliga (1)</a>
-<a href="/en/fifa21/career-mode/teams?l=4">Belgium Pro League (1)</a>
-<a href="/en/fifa21/career-mode/teams?l=7">Brazil Serie A (1)</a>
-<a href="/en/fifa21/career-mode/teams?l=1003">CONMEBOL Libertadores</a>
-<a href="/en/fifa21/career-mode/teams?l=1014">CONMEBOL Sudamericana</a>
-<a href="/en/fifa21/career-mode/teams?l=2012">China Super League (1)</a>
-<a href="/en/fifa21/career-mode/teams?l=317">Croatia Prva HNL (1)</a>
-<a href="/en/fifa21/career-mode/teams?l=319">Czech Republic HET Liga (1)</a>
-<a href="/en/fifa21/career-mode/teams?l=1">Denmark Superliga (1)</a>
-<a href="/en/fifa21/career-mode/teams?l=14">England Championship (2)</a>
-<a href="/en/fifa21/career-mode/teams?l=60">England League One (3)</a>
-<a href="/en/fifa21/career-mode/teams?l=61">England League Two (4)</a>
-<a href="/en/fifa21/career-mode/teams?l=13">England Premier League (1)</a>
-<a href="/en/fifa21/career-mode/teams?l=2179">FUT Calcio B</a>
-<a href="/en/fifa21/career-mode/teams?l=322">Finland Veikkausliiga (1)</a>
-<a href="/en/fifa21/career-mode/teams?l=16">France Ligue 1 (1)</a>
-<a href="/en/fifa21/career-mode/teams?l=17">France Ligue 2 (2)</a>
-<a href="/en/fifa21/career-mode/teams?l=19">Germany 1. Bundesliga (1)</a>
-<a href="/en/fifa21/career-mode/teams?l=20">Germany 2. Bundesliga (2)</a>
-<a href="/en/fifa21/career-mode/teams?l=2076">Germany 3. Liga (3)</a>
-<a href="/en/fifa21/career-mode/teams?l=10">Holland Eredivisie (1)</a>
-<a href="/en/fifa21/career-mode/teams?l=78">International</a>
-<a href="/en/fifa21/career-mode/teams?l=31">Italy Serie A (1)</a>
-<a href="/en/fifa21/career-mode/teams?l=349">Japan J1 League (1)</a>
-<a href="/en/fifa21/career-mode/teams?l=83">Korea K League 1 (1)</a>
-<a href="/en/fifa21/career-mode/teams?l=341">Mexico Liga MX (1)</a>
-<a href="/en/fifa21/career-mode/teams?l=41">Norway Eliteserien (1)</a>
-<a href="/en/fifa21/career-mode/teams?l=66">Poland Ekstraklasa (1)</a>
-<a href="/en/fifa21/career-mode/teams?l=308">Portugal Primeira Liga (1)</a>
-<a href="/en/fifa21/career-mode/teams?l=65">Rep. Ireland Premier Division (1)</a>
-<a href="/en/fifa21/career-mode/teams?l=76">Rest of World</a>
-<a href="/en/fifa21/career-mode/teams?l=330">Romania Liga I (1)</a>
-<a href="/en/fifa21/career-mode/teams?l=3006">Russia FUT League</a>
-<a href="/en/fifa21/career-mode/teams?l=350">Saudi Pro League (1)</a>
-<a href="/en/fifa21/career-mode/teams?l=50">Scotland Premiership (1)</a>
-<a href="/en/fifa21/career-mode/teams?l=347">South Africa Premier SL (1)</a>
-<a href="/en/fifa21/career-mode/teams?l=53">Spain Primera DivisiÃ³n (1)</a>
-<a href="/en/fifa21/career-mode/teams?l=54">Spain Segunda DivisiÃ³n (2)</a>
-<a href="/en/fifa21/career-mode/teams?l=56">Sweden Allsvenskan (1)</a>
-<a href="/en/fifa21/career-mode/teams?l=189">Switzerland Super League (1)</a>
-<a href="/en/fifa21/career-mode/teams?l=68">Turkey SÃ¼per Lig (1)</a>
-<a href="/en/fifa21/career-mode/teams?l=2172">UAE FUT League</a>
-<a href="/en/fifa21/career-mode/teams?l=39">USA Major League Soccer (1)</a>
-<a href="/en/fifa21/career-mode/teams?l=332">Ukraine Premier Liga (1)</a>
+<style>
+        .cplayerprofile-body {
+            position:relative;
+            overflow:hidden;
+        }
+        .cplayerprofile-head {
+            position:absolute;
+            left:20px;
+            bottom:0px;
+        }
+        .cplayerprofile-head img {
+            filter: drop-shadow(0px 80px 30px rgba(251,32,92,0.3));
+        }
+        .cplayerprofile-data {
+            margin-top:20px;
+            margin-left:225px;
+            font-family:'DIN Pro Condensed Bold';
+            color:#fff;
+            text-transform:uppercase;
+        }
+        .cplayerprofile-ovr {
+            margin-right:10px;
+            display:inline-block;
+            border-radius:5px;
+            padding-top:10px;
+            padding-bottom:10px;
+            padding-left:15px;
+            padding-right:15px;
+            text-align:center;
+            background:#aeea2e;
+            box-shadow:0px 0px 15px #aeea2e;
+            color:#000;
+        }
+        .cplayerprofile-pot {
+            margin-right:10px;
+            display:inline-block;
+            border-radius:5px;
+            padding-top:8px;
+            padding-bottom:8px;
+            padding-left:15px;
+            padding-right:15px;
+            text-align:center;
+            border:2px solid #aeea2e;
+            color:#fff;
+        }
+        .cprofstat {
+            font-size:50px;
+            margin-top:-10px !important;
+        }
+        .cproflabel {
+            font-size:20px;
+            margin-top:-20px !important;
+        }
+        .cprofile-infobar {
+            background:#12131b;
+            padding:10px;
+            margin-top:20px;
+            color:#fff;
+            font-family:'DIN Pro Condensed Bold';
+            font-size:18px;
+            text-transform:uppercase;
+        }
+        .cprofile-infobardata {
+            margin-left:220px;
+        }
+        .cprofile-infobarmargin {
+            display:inline-block;
+            margin-right:20px;
+        }
+        .cprofile-inforbar-label {
+            display:inline-block;
+            font-size:14px;
+        }
+        .cprofile-inforbar-stat {
+            color:#fb2060;
+            display:inline-block;
+            font-size:10px;
+            vertical-align:top;
+            margin-top:7px;
+        }
+        .realfacebutton {
+            display:inline-block;
+            padding:5px;
+            margin-left:5px;
+            border:1px solid #282b39;
+            font-size:10px;
+            border-radius:5px;
+        }
+        .cplayerprofile-mobinfo {
+            display:none;
+        }
+        .career-value {
+            color:#aeea2e;
+            font-size:18px;
+            margin-top:1px;
+            margin-right:10px;
+        }
+        .wagevalue {
+            color:#aeea2e;
+            font-size:18px;
+            margin-top:1px;
+            color:#fb2060;
+        }
+        .careerpitch {
+            margin-top:70px;
+            margin-left:25px;
+        }
+        @media(max-width:700px) {
+            .cprofile-infobar {
+                display:none;
+            }
+            .cplayerprofile-data .playerprofile-db {
+                display:none;
+            }
+            .cplayerprofile-body {
+                height:180px;
+            }
+            .cprofile-infobardata {
+                margin-left:0px;
+                text-align:center;
+            }
+            .cprofile-infobarmargin {
+                margin-right:10px;
+            }
+            .cplayerprofile-ovr,.cplayerprofile-pot {
+                margin-top:25px;
+            }
+            .cprofstat {
+                font-size:40px;
+            }
+            .cproflabel {
+                font-size:16px;
+            }
+            .cplayerprofile-mobinfo {
+                display:block;
+            }
+            .cplayerprofile-mob-pos {
+                display:inline-block;
+                margin-left:1px;
+                margin-top:10px;
+            }
+        }
+        @media(max-width:400px) {
+            .cplayerprofile-head {
+                left:0px;
+            }
+            .cplayerprofile-head img {
+                width:140px;
+                height:140px;
+            }
+            .cplayerprofile-body {
+                height:140px;
+            }
+            .cplayerprofile-data .pull-left {
+                margin-left:-85px;
+                margin-top:-25px;
+            }
+            .cplayerprofile-pot {
+                margin-top:10px;
+                margin-left:-5px;
+            }
+        }
+        </style>
+<div class="playerprofile-head">
+<div class="playerprofile-hbar" style="background:rgba(,0.5);">
+<div class="playerprofile-hbar-ttl">
+<h1>Charles Traore</h1>
+<div style="font-size:14px;margin-top:-10px;">Mali | FC Nantes | France Ligue 1 (1)</div>
+</div>
+<div class="playerprofile-hbar-club"><img src="/assets/img/fifa21/badges/71.png" /></div>
+<div class="playerprofile-sep"></div>
+<div class="playerprofile-hbar-nat"><img src="/assets/img/fifa21/flags/126.png" /></div>
+<div class="playerprofile-nav"></div>
+</div>
+</div>
+<div class="playerprofile-head">
+<div class="cplayerprofile-body">
+<div class="cplayerprofile-head">
+<img src="/assets/img/fifa21/careerfaces/231098.png" alt="Charles Traore Face">
+</div>
+<div class="cplayerprofile-data">
+<div class="pull-left">
+<div class="cplayerprofile-ovr"><p class="cprofstat">71</p><p class="cproflabel">OVR</p></div>
+<div class="cplayerprofile-pot"><p class="cprofstat">71</p><p class="cproflabel">POT</p></div>
+<div class="cplayerprofile-mobinfo"><div class="cplayerprofile-mob-pos">LB</div>
+</div>
+<div class="playerprofile-db">
+<p class="ppdb-d">28</p>
+<p class="ppdb-l">AGE</p>
+</div>
+<div class="playerprofile-db">
+<p class="ppdb-d">5&#039; 11&quot;</p>
+<p class="ppdb-l">180cm TALL</p>
+</div>
+<div class="playerprofile-db">
+<p class="ppdb-d">74kg</p>
+<p class="ppdb-l">Weight</p>
+</div>
+<div class="playerprofile-db">
+<p class="ppdb-d">Med/Med</p>
+<p class="ppdb-l">Workrates</p>
+</div>
+<div class="playerprofile-db">
+<p class="ppdb-d">Left</p>
+<p class="ppdb-l">Footed</p>
+</div>
+</div>
+<div class="clearfix"></div>
+</div>
+<div class="cprofile-infobar">
+<div class="cprofile-infobardata">
+<div class="cprofile-infobarmargin">LB</div>
+<div class="cprofile-inforbar-label">Skills</div> <div class="cprofile-inforbar-stat wagevalue">2 <i class="fa fa-star"></i></div>
+<div class="cprofile-inforbar-label">Weak Foot</div> <div class="cprofile-inforbar-stat wagevalue">2 <i class="fa fa-star"></i></div>
+<div class="cprofile-inforbar-label">Int. Rep</div> <div class="cprofile-inforbar-stat wagevalue">1 <i class="fa fa-star"></i></div>
+<div class="cprofile-inforbar-label ml-20">Contract</div> <div class="cprofile-inforbar-stat wagevalue">2023</div>
+<div class="cprofile-inforbar-label" style="margin-left:10px;">Value</div> <div class="cprofile-inforbar-stat career-value">&pound;1.5M</div>
+<div class="cprofile-inforbar-label">Wage</div> <div class="cprofile-inforbar-stat wagevalue">&pound;13.5K</div>
+</div>
+</div>
+</div>
+<div class="playerprofile-ad">
+<div class="ad" id="nn_mpu1"></div>
+</div>
+</div>
+<div class="playerprofile-info-mobile">
+<div class="playerprofile-db">
+<p class="ppdb-d ppskills">2 <i class="fa fa-star"></i></p>
+<p class="ppdb-l">Skills</p>
+</div>
+<div class="playerprofile-db">
+<p class="ppdb-d ppskills">2 <i class="fa fa-star"></i></p>
+<p class="ppdb-l">Weakfoot</p>
+</div>
+<div class="playerprofile-db">
+<p class="ppdb-d">28</p>
+<p class="ppdb-l">AGE</p>
+</div>
+<div class="playerprofile-db">
+<p class="ppdb-d">5&#039; 11&quot;</p>
+<p class="ppdb-l">180cm TALL</p>
+</div>
+<div class="playerprofile-db">
+<p class="ppdb-d">74kg</p>
+<p class="ppdb-l">Weight</p>
+</div>
+<div class="playerprofile-db">
+<p class="ppdb-d">Med/Med</p>
+<p class="ppdb-l">Workrates</p>
+</div>
+<div class="playerprofile-db">
+<p class="ppdb-d">Left</p>
+<p class="ppdb-l">Footed</p>
+</div>
+</div>
+<div class="playerprofile-info-mobile">
+<div class="playerprofile-db">
+<p class="ppdb-d ppskills">1 <i class="fa fa-star"></i></p>
+<p class="ppdb-l">Int. Rep</p>
+</div>
+<div class="playerprofile-db">
+<p class="ppdb-d ppskills">01/09/2018</p>
+<p class="ppdb-l">Joined Team</p>
+</div>
+<div class="playerprofile-db">
+<p class="ppdb-d ppskills">2023</p>
+<p class="ppdb-l">Contract</p>
+</div>
+</div>
+<div class="playerprofile-admobile">
+</div>
+<div class="playerprofile-stats">
+<div class="playerprofile-stats-data">
+<div class="row stats">
+<div class="col-2">
+<div class="statBlock">
+<div class="title">
+<div class="pull-left padtop-2">Pac</div>
+<div class="highbarcolour att1bar">71</div>
+<div class="clearfix"></div>
+</div>
+<div class="individual-stat-container" data-percentage="70">
+<div class="individual-stat-bar-label">Acceleration<span class="accelerationboost" style="padding-left:10px;font-size:12px;"></span></div>
+<div class="individual-stat-bar-stat textcolour accelerationstat">69</div>
+<div class="individual-stat-bar-back"></div>
+<div class="individual-stat-bar-front mediumbarcolour accelerationbar"></div>
+</div>
+<div class="individual-stat-container" data-percentage="74">
+<div class="individual-stat-bar-label">Sprint Speed<span class="sprintspeedboost" style="padding-left:10px;font-size:12px;"></span></div>
+<div class="individual-stat-bar-stat textcolour sprintspeedstat">73</div>
+<div class="individual-stat-bar-back"></div>
+<div class="individual-stat-bar-front highbarcolour sprintspeedbar"></div>
+</div>
+</div>
+</div>
+<div class="col-2">
+<div class="statBlock">
+<div class="title">
+<div class="pull-left padtop-2">Sho</div>
+<div class="lowbarcolour att2bar">36</div>
+<div class="clearfix"></div>
+</div>
+<div class="individual-stat-container" data-percentage="52">
+<div class="individual-stat-bar-label">Positioning<span class="positioningboost" style="padding-left:10px;font-size:12px;"></span></div>
+<div class="individual-stat-bar-stat textcolour positioningstat">51</div>
+<div class="individual-stat-bar-back"></div>
+<div class="individual-stat-bar-front mediumbarcolour positioningbar"></div>
+</div>
+<div class="individual-stat-container" data-percentage="31">
+<div class="individual-stat-bar-label">Finishing<span class="finishingboost" style="padding-left:10px;font-size:12px;"></span></div>
+<div class="individual-stat-bar-stat textcolour finishingstat">30</div>
+<div class="individual-stat-bar-back"></div>
+<div class="individual-stat-bar-front lowbarcolour finishingbar"></div>
+</div>
+<div class="individual-stat-container" data-percentage="38">
+<div class="individual-stat-bar-label">Long Shots<span class="longshotboost" style="padding-left:10px;font-size:12px;"></span></div>
+<div class="individual-stat-bar-stat textcolour longshotstat">37</div>
+<div class="individual-stat-bar-back"></div>
+<div class="individual-stat-bar-front lowbarcolour longshotbar"></div>
+</div>
+<div class="individual-stat-container" data-percentage="46">
+<div class="individual-stat-bar-label">Penalties<span class="penaltiesboost" style="padding-left:10px;font-size:12px;"></span></div>
+<div class="individual-stat-bar-stat textcolour penaltiesstat">45</div>
+<div class="individual-stat-bar-back"></div>
+<div class="individual-stat-bar-front lowbarcolour penaltiesbar"></div>
+</div>
+<div class="individual-stat-container" data-percentage="47">
+<div class="individual-stat-bar-label">Shot Power<span class="shotpowerboost" style="padding-left:10px;font-size:12px;"></span></div>
+<div class="individual-stat-bar-stat textcolour shotpowerstat">46</div>
+<div class="individual-stat-bar-back"></div>
+<div class="individual-stat-bar-front lowbarcolour shotpowerbar"></div>
+</div>
+<div class="individual-stat-container" data-percentage="30">
+<div class="individual-stat-bar-label">Volleys<span class="volleysboost" style="padding-left:10px;font-size:12px;"></span></div>
+<div class="individual-stat-bar-stat textcolour volleysstat">29</div>
+<div class="individual-stat-bar-back"></div>
+<div class="individual-stat-bar-front lowbarcolour volleysbar"></div>
+</div>
+</div>
+</div>
+<div class="col-2">
+<div class="statBlock">
+<div class="title">
+<div class="pull-left padtop-2">Pas</div>
+<div class="mediumbarcolour att3bar">56</div>
+<div class="clearfix"></div>
+</div>
+<div class="individual-stat-container" data-percentage="65">
+<div class="individual-stat-bar-label">Crossing<span class="crossingboost" style="padding-left:10px;font-size:12px;"></span></div>
+<div class="individual-stat-bar-stat textcolour crossingstat">64</div>
+<div class="individual-stat-bar-back"></div>
+<div class="individual-stat-bar-front mediumbarcolour crossingbar"></div>
+</div>
+<div class="individual-stat-container" data-percentage="38">
+<div class="individual-stat-bar-label">Curve<span class="curveboost" style="padding-left:10px;font-size:12px;"></span></div>
+<div class="individual-stat-bar-stat textcolour curvestat">37</div>
+<div class="individual-stat-bar-back"></div>
+<div class="individual-stat-bar-front lowbarcolour curvebar"></div>
+</div>
+<div class="individual-stat-container" data-percentage="41">
+<div class="individual-stat-bar-label">FK. Accuracy<span class="fkaccboost" style="padding-left:10px;font-size:12px;"></span></div>
+<div class="individual-stat-bar-stat textcolour fkaccstat">40</div>
+<div class="individual-stat-bar-back"></div>
+<div class="individual-stat-bar-front lowbarcolour fkaccbar"></div>
+</div>
+<div class="individual-stat-container" data-percentage="60">
+<div class="individual-stat-bar-label">Long Pass<span class="longpassboost" style="padding-left:10px;font-size:12px;"></span></div>
+<div class="individual-stat-bar-stat textcolour longpassstat">59</div>
+<div class="individual-stat-bar-back"></div>
+<div class="individual-stat-bar-front mediumbarcolour longpassbar"></div>
+</div>
+<div class="individual-stat-container" data-percentage="61">
+<div class="individual-stat-bar-label">Short Pass.<span class="shortpassboost" style="padding-left:10px;font-size:12px;"></span></div>
+<div class="individual-stat-bar-stat textcolour shortpassstat">60</div>
+<div class="individual-stat-bar-back"></div>
+<div class="individual-stat-bar-front mediumbarcolour shortpassbar"></div>
+</div>
+<div class="individual-stat-container" data-percentage="49">
+<div class="individual-stat-bar-label">Vision<span class="visionboost" style="padding-left:10px;font-size:12px;"></span></div>
+<div class="individual-stat-bar-stat textcolour visionstat">48</div>
+<div class="individual-stat-bar-back"></div>
+<div class="individual-stat-bar-front lowbarcolour visionbar"></div>
+</div>
+</div>
+</div>
+<div class="col-2">
+<div class="statBlock">
+<div class="title">
+<div class="pull-left padtop-2">Dri</div>
+<div class="mediumbarcolour att4bar">66</div>
+<div class="clearfix"></div>
+</div>
+<div class="individual-stat-container" data-percentage="69">
+<div class="individual-stat-bar-label">Agility<span class="agilityboost" style="padding-left:10px;font-size:12px;"></span></div>
+<div class="individual-stat-bar-stat textcolour agilitystat">68</div>
+<div class="individual-stat-bar-back"></div>
+<div class="individual-stat-bar-front mediumbarcolour agilitybar"></div>
+</div>
+<div class="individual-stat-container" data-percentage="66">
+<div class="individual-stat-bar-label">Balance<span class="balanceboost" style="padding-left:10px;font-size:12px;"></span></div>
+<div class="individual-stat-bar-stat textcolour balancestat">65</div>
+<div class="individual-stat-bar-back"></div>
+<div class="individual-stat-bar-front mediumbarcolour balancebar"></div>
+</div>
+<div class="individual-stat-container" data-percentage="67">
+<div class="individual-stat-bar-label">Ball Control<span class="ballcontrolboost" style="padding-left:10px;font-size:12px;"></span></div>
+<div class="individual-stat-bar-stat textcolour ballcontrolstat">66</div>
+<div class="individual-stat-bar-back"></div>
+<div class="individual-stat-bar-front mediumbarcolour ballcontrolbar"></div>
+</div>
+<div class="individual-stat-container" data-percentage="67">
+<div class="individual-stat-bar-label">Dribbling<span class="dribblingboost" style="padding-left:10px;font-size:12px;"></span></div>
+<div class="individual-stat-bar-stat textcolour dribblingstat">66</div>
+<div class="individual-stat-bar-back"></div>
+<div class="individual-stat-bar-front mediumbarcolour dribblingbar"></div>
+</div>
+<div class="individual-stat-container" data-percentage="67">
+<div class="individual-stat-bar-label">Reactions<span class="reactionsboost" style="padding-left:10px;font-size:12px;"></span></div>
+<div class="individual-stat-bar-stat textcolour reactionsstat">66</div>
+<div class="individual-stat-bar-back"></div>
+<div class="individual-stat-bar-front mediumbarcolour reactionsbar"></div>
+</div>
+<div class="individual-stat-container" data-percentage="58">
+<div class="individual-stat-bar-label">Composure<span class="composureboost" style="padding-left:10px;font-size:12px;"></span></div>
+<div class="individual-stat-bar-stat textcolour composurestat">57</div>
+<div class="individual-stat-bar-back"></div>
+<div class="individual-stat-bar-front mediumbarcolour composurebar"></div>
+</div>
+</div>
+</div>
+<div class="col-2">
+<div class="statBlock">
+<div class="title">
+<div class="pull-left padtop-2">Def</div>
+<div class="mediumbarcolour att5bar">70</div>
+<div class="clearfix"></div>
+</div>
+<div class="individual-stat-container" data-percentage="65">
+<div class="individual-stat-bar-label">Heading Acc.<span class="headingaccboost" style="padding-left:10px;font-size:12px;"></span></div>
+<div class="individual-stat-bar-stat textcolour headingaccstat">64</div>
+<div class="individual-stat-bar-back"></div>
+<div class="individual-stat-bar-front mediumbarcolour headingaccbar"></div>
+</div>
+<div class="individual-stat-container" data-percentage="70">
+<div class="individual-stat-bar-label">Interceptions<span class="tactawareboost" style="padding-left:10px;font-size:12px;"></span></div>
+<div class="individual-stat-bar-stat textcolour tactawarestat">69</div>
+<div class="individual-stat-bar-back"></div>
+<div class="individual-stat-bar-front mediumbarcolour tactawarebar"></div>
+</div>
+<div class="individual-stat-container" data-percentage="73">
+<div class="individual-stat-bar-label">Marking<span class="markingboost" style="padding-left:10px;font-size:12px;"></span></div>
+<div class="individual-stat-bar-stat textcolour markingstat">72</div>
+ <div class="individual-stat-bar-back"></div>
+<div class="individual-stat-bar-front highbarcolour markingbar"></div>
+</div>
+<div class="individual-stat-container" data-percentage="72">
+<div class="individual-stat-bar-label">Stand Tackle<span class="standingtackleboost" style="padding-left:10px;font-size:12px;"></span></div>
+<div class="individual-stat-bar-stat textcolour standingtacklestat">71</div>
+<div class="individual-stat-bar-back"></div>
+<div class="individual-stat-bar-front highbarcolour standingtacklebar"></div>
+</div>
+<div class="individual-stat-container" data-percentage="72">
+<div class="individual-stat-bar-label">Slide Tackle<span class="slidetackleboost" style="padding-left:10px;font-size:12px;"></span></div>
+<div class="individual-stat-bar-stat textcolour slidetacklestat">71</div>
+<div class="individual-stat-bar-back"></div>
+<div class="individual-stat-bar-front highbarcolour slidetacklebar"></div>
+</div>
+</div>
+</div>
+<div class="col-2">
+<div class="statBlock">
+<div class="title">
+<div class="pull-left padtop-2">Phy</div>
+<div class="highbarcolour att6bar">76</div>
+<div class="clearfix"></div>
+</div>
+<div class="individual-stat-container" data-percentage="75">
+<div class="individual-stat-bar-label">Aggression<span class="aggressionboost" style="padding-left:10px;font-size:12px;"></span></div>
+<div class="individual-stat-bar-stat textcolour aggressionstat">74</div>
+<div class="individual-stat-bar-back"></div>
+<div class="individual-stat-bar-front highbarcolour aggressionbar"></div>
+</div>
+<div class="individual-stat-container" data-percentage="83">
+<div class="individual-stat-bar-label">Jumping<span class="jumpingboost" style="padding-left:10px;font-size:12px;"></span></div>
+<div class="individual-stat-bar-stat textcolour jumpingstat">82</div>
+<div class="individual-stat-bar-back"></div>
+<div class="individual-stat-bar-front highestbarcolour jumpingbar"></div>
+</div>
+<div class="individual-stat-container" data-percentage="84">
+<div class="individual-stat-bar-label">Stamina<span class="staminaboost" style="padding-left:10px;font-size:12px;"></span></div>
+<div class="individual-stat-bar-stat textcolour staminastat">83</div>
+<div class="individual-stat-bar-back"></div>
+<div class="individual-stat-bar-front highestbarcolour staminabar"></div>
+</div>
+<div class="individual-stat-container" data-percentage="74">
+<div class="individual-stat-bar-label">Strength<span class="strengthboost" style="padding-left:10px;font-size:12px;"></span></div>
+<div class="individual-stat-bar-stat textcolour strengthstat">73</div>
+<div class="individual-stat-bar-back"></div>
+<div class="individual-stat-bar-front highbarcolour strengthbar"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="playerprofile-pitch careerpitch">
+<div class="mt-10 altpos-pitch mb-20">
+<div class="altpos-pos poscb stat-label-high">
+<div class="altpos-inner-l1">71</div>
+<div class="altpos-inner-l2">CB</div>
+</div>
+<div class="altpos-pos poscdm stat-label-medium">
+<div class="altpos-inner-l1">68</div>
+<div class="altpos-inner-l2">CDM</div>
+</div>
+<div class="altpos-pos poscm stat-label-medium">
+<div class="altpos-inner-l1">61</div>
+<div class="altpos-inner-l2">CM</div>
+</div>
+<div class="altpos-pos poscam stat-label-medium">
+<div class="altpos-inner-l1">58</div>
+<div class="altpos-inner-l2">CAM</div>
+</div>
+<div class="altpos-pos poscf stat-label-medium">
+<div class="altpos-inner-l1">57</div>
+<div class="altpos-inner-l2">CF</div>
+</div>
+<div class="altpos-pos posst stat-label-medium">
+<div class="altpos-inner-l1">55</div>
+<div class="altpos-inner-l2">ST</div>
+</div>
+<div class="altpos-pos poslw stat-label-medium">
+<div class="altpos-inner-l1">60</div>
+<div class="altpos-inner-l2">LW</div>
+</div>
+<div class="altpos-pos poslf stat-label-medium">
+<div class="altpos-inner-l1">57</div>
+<div class="altpos-inner-l2">LF</div>
+</div>
+<div class="altpos-pos posrf stat-label-medium">
+<div class="altpos-inner-l1">57</div>
+<div class="altpos-inner-l2">RF</div>
+</div>
+<div class="altpos-pos posrw stat-label-medium">
+<div class="altpos-inner-l1">60</div>
+<div class="altpos-inner-l2">RW</div>
+</div>
+<div class="altpos-pos poslm stat-label-medium">
+<div class="altpos-inner-l1">63</div>
+<div class="altpos-inner-l2">LM</div>
+</div>
+<div class="altpos-pos posrm stat-label-medium">
+<div class="altpos-inner-l1">63</div>
+<div class="altpos-inner-l2">RM</div>
+</div>
+<div class="altpos-pos posrb stat-label-medium">
+<div class="altpos-inner-l1">70</div>
+<div class="altpos-inner-l2">RB</div>
+</div>
+<div class="altpos-pos posrwb stat-label-medium">
+<div class="altpos-inner-l1">70</div>
+<div class="altpos-inner-l2">RWB</div>
+</div>
+<div class="altpos-pos poslb stat-label-medium">
+<div class="altpos-inner-l1">70</div>
+<div class="altpos-inner-l2">LB</div>
+</div>
+<div class="altpos-pos poslwb stat-label-medium">
+<div class="altpos-inner-l1">70</div>
+<div class="altpos-inner-l2">LWB</div>
 </div>
-<div class="wrap">
-<input type="text" id="comparesearch" placeholder="Search clubs by name..." onkeyup="searchClubs($(this).val());">
-<div class="row teamlist">
-<div class="col-2" data-id="21" data-teamname="Bayern MÃ¼nchen">
-<div class="league-module">
-<div class="image-bg" style="background:linear-gradient(0deg,rgba(220,5,45,0.4),rgba(220,5,45,0.4)),url(/assets/img/site/clubbg20.png);">
-<div class="image">
-<a href="/en/fifa21/career-mode/players?minrating=1&maxrating=99&teams%5B%5D=21&leagues[]=19&order=rating&s=desc" class="teamlogo21"><img src="/assets/img/fifa20/badges/21.png"></a>
 </div>
-</div>
-<div class="body">
-<h5><a href="/en/fifa21/career-mode/players?minrating=1&maxrating=99&teams%5B%5D=21&leagues[]=19&order=rating&s=desc">Bayern MÃ¼nchen</a><span class="tag">Germany 1. Bundesliga (1)</span></h5>
-</div>
-<div class="bottom">
-<div class="row">
-<div class="col-12 text-center">
-<p>Budget <strong>Â£88M</strong></p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="col-2" data-id="22" data-teamname="Borussia Dortmund">
-<div class="league-module">
-<div class="image-bg" style="background:linear-gradient(0deg,rgba(255,230,1,0.4),rgba(255,230,1,0.4)),url(/assets/img/site/clubbg20.png);">
-<div class="image">
-<a href="/en/fifa21/career-mode/players?minrating=1&maxrating=99&teams%5B%5D=22&leagues[]=19&order=rating&s=desc" class="teamlogo22"><img src="/assets/img/fifa20/badges/22.png"></a>
-</div>
-</div>
-<div class="body">
-<h5><a href="/en/fifa21/career-mode/players?minrating=1&maxrating=99&teams%5B%5D=22&leagues[]=19&order=rating&s=desc">Borussia Dortmund</a><span class="tag">Germany 1. Bundesliga (1)</span></h5>
-</div>
-<div class="bottom">
-<div class="row">
-<div class="col-12 text-center">
-<p>Budget <strong>Â£52.8M</strong></p>
-</div>
-</div>
-</div>
-</div>
-</div>
- <div class="col-2" data-id="166" data-teamname="Hertha BSC">
-<div class="league-module">
-<div class="image-bg" style="background:linear-gradient(0deg,rgba(1,105,180,0.4),rgba(1,105,180,0.4)),url(/assets/img/site/clubbg20.png);">
-<div class="image">
-<a href="/en/fifa21/career-mode/players?minrating=1&maxrating=99&teams%5B%5D=166&leagues[]=19&order=rating&s=desc" class="teamlogo166"><img src="/assets/img/fifa20/badges/166.png"></a>
-</div>
-</div>
-<div class="body">
-<h5><a href="/en/fifa21/career-mode/players?minrating=1&maxrating=99&teams%5B%5D=166&leagues[]=19&order=rating&s=desc">Hertha BSC</a><span class="tag">Germany 1. Bundesliga (1)</span></h5>
-</div>
-<div class="bottom">
-<div class="row">
-<div class="col-12 text-center">
-<p>Budget <strong>Â£52.8M</strong></p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="col-2" data-id="112172" data-teamname="RB Leipzig">
-<div class="league-module">
-<div class="image-bg" style="background:linear-gradient(0deg,rgba(255,255,255,0.4),rgba(255,255,255,0.4)),url(/assets/img/site/clubbg20.png);">
-<div class="image">
-<a href="/en/fifa21/career-mode/players?minrating=1&maxrating=99&teams%5B%5D=112172&leagues[]=19&order=rating&s=desc" class="teamlogo112172"><img src="/assets/img/fifa20/badges/112172.png"></a>
-</div>
-</div>
-<div class="body">
-<h5><a href="/en/fifa21/career-mode/players?minrating=1&maxrating=99&teams%5B%5D=112172&leagues[]=19&order=rating&s=desc">RB Leipzig</a><span class="tag">Germany 1. Bundesliga (1)</span></h5>
-</div>
-<div class="bottom">
-<div class="row">
-<div class="col-12 text-center">
-<p>Budget <strong>Â£44M</strong></p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="col-2" data-id="175" data-teamname="VfL Wolfsburg">
-<div class="league-module">
-<div class="image-bg" style="background:linear-gradient(0deg,rgba(100,180,45,0.4),rgba(100,180,45,0.4)),url(/assets/img/site/clubbg20.png);">
-<div class="image">
-<a href="/en/fifa21/career-mode/players?minrating=1&maxrating=99&teams%5B%5D=175&leagues[]=19&order=rating&s=desc" class="teamlogo175"><img src="/assets/img/fifa20/badges/175.png"></a>
-</div>
-</div>
-<div class="body">
-<h5><a href="/en/fifa21/career-mode/players?minrating=1&maxrating=99&teams%5B%5D=175&leagues[]=19&order=rating&s=desc">VfL Wolfsburg</a><span class="tag">Germany 1. Bundesliga (1)</span></h5>
-</div>
-<div class="bottom">
-<div class="row">
-<div class="col-12 text-center">
-<p>Budget <strong>Â£35.2M</strong></p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="col-2" data-id="32" data-teamname="Bayer 04 Leverkusen">
-<div class="league-module">
-<div class="image-bg" style="background:linear-gradient(0deg,rgba(255,1,1,0.4),rgba(255,1,1,0.4)),url(/assets/img/site/clubbg20.png);">
-<div class="image">
-<a href="/en/fifa21/career-mode/players?minrating=1&maxrating=99&teams%5B%5D=32&leagues[]=19&order=rating&s=desc" class="teamlogo32"><img src="/assets/img/fifa20/badges/32.png"></a>
-</div>
-</div>
-<div class="body">
-<h5><a href="/en/fifa21/career-mode/players?minrating=1&maxrating=99&teams%5B%5D=32&leagues[]=19&order=rating&s=desc">Bayer 04 Leverkusen</a><span class="tag">Germany 1. Bundesliga (1)</span></h5>
-</div>
-<div class="bottom">
-<div class="row">
-<div class="col-12 text-center">
-<p>Budget <strong>Â£34.3M</strong></p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="col-2" data-id="10029" data-teamname="TSG 1899 Hoffenheim">
-<div class="league-module">
-<div class="image-bg" style="background:linear-gradient(0deg,rgba(31,93,166,0.4),rgba(31,93,166,0.4)),url(/assets/img/site/clubbg20.png);">
-<div class="image">
-<a href="/en/fifa21/career-mode/players?minrating=1&maxrating=99&teams%5B%5D=10029&leagues[]=19&order=rating&s=desc" class="teamlogo10029"><img src="/assets/img/fifa20/badges/10029.png"></a>
-</div>
-</div>
-<div class="body">
-<h5><a href="/en/fifa21/career-mode/players?minrating=1&maxrating=99&teams%5B%5D=10029&leagues[]=19&order=rating&s=desc">TSG 1899 Hoffenheim</a><span class="tag">Germany 1. Bundesliga (1)</span></h5>
-</div>
-<div class="bottom">
-<div class="row">
-<div class="col-12 text-center">
-<p>Budget <strong>Â£24.6M</strong></p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="col-2" data-id="23" data-teamname="Borussia M&#039;gladbach">
-<div class="league-module">
-<div class="image-bg" style="background:linear-gradient(0deg,rgba(1,1,1,0.4),rgba(1,1,1,0.4)),url(/assets/img/site/clubbg20.png);">
-<div class="image">
-<a href="/en/fifa21/career-mode/players?minrating=1&maxrating=99&teams%5B%5D=23&leagues[]=19&order=rating&s=desc" class="teamlogo23"><img src="/assets/img/fifa20/badges/23.png"></a>
-</div>
-</div>
-<div class="body">
-<h5><a href="/en/fifa21/career-mode/players?minrating=1&maxrating=99&teams%5B%5D=23&leagues[]=19&order=rating&s=desc">Borussia M&#039;gladbach</a><span class="tag">Germany 1. Bundesliga (1)</span></h5>
-</div>
-<div class="bottom">
-<div class="row">
-<div class="col-12 text-center">
-<p>Budget <strong>Â£22M</strong></p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="col-2" data-id="1824" data-teamname="Eintracht Frankfurt">
-<div class="league-module">
-<div class="image-bg" style="background:linear-gradient(0deg,rgba(1,1,1,0.4),rgba(1,1,1,0.4)),url(/assets/img/site/clubbg20.png);">
-<div class="image">
-<a href="/en/fifa21/career-mode/players?minrating=1&maxrating=99&teams%5B%5D=1824&leagues[]=19&order=rating&s=desc" class="teamlogo1824"><img src="/assets/img/fifa20/badges/1824.png"></a>
-</div>
-</div>
-<div class="body">
-<h5><a href="/en/fifa21/career-mode/players?minrating=1&maxrating=99&teams%5B%5D=1824&leagues[]=19&order=rating&s=desc">Eintracht Frankfurt</a><span class="tag">Germany 1. Bundesliga (1)</span></h5>
-</div>
-<div class="bottom">
-<div class="row">
-<div class="col-12 text-center">
-<p>Budget <strong>Â£22M</strong></p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="col-2" data-id="34" data-teamname="FC Schalke 04">
-<div class="league-module">
-<div class="image-bg" style="background:linear-gradient(0deg,rgba(1,75,156,0.4),rgba(1,75,156,0.4)),url(/assets/img/site/clubbg20.png);">
-<div class="image">
-<a href="/en/fifa21/career-mode/players?minrating=1&maxrating=99&teams%5B%5D=34&leagues[]=19&order=rating&s=desc" class="teamlogo34"><img src="/assets/img/fifa20/badges/34.png"></a>
-</div>
-</div>
-<div class="body">
-<h5><a href="/en/fifa21/career-mode/players?minrating=1&maxrating=99&teams%5B%5D=34&leagues[]=19&order=rating&s=desc">FC Schalke 04</a><span class="tag">Germany 1. Bundesliga (1)</span></h5>
-</div>
-<div class="bottom">
-<div class="row">
-<div class="col-12 text-center">
-<p>Budget <strong>Â£17.6M</strong></p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="col-2" data-id="36" data-teamname="VfB Stuttgart">
-<div class="league-module">
-<div class="image-bg" style="background:linear-gradient(0deg,rgba(255,255,255,0.4),rgba(255,255,255,0.4)),url(/assets/img/site/clubbg20.png);">
-<div class="image">
-<a href="/en/fifa21/career-mode/players?minrating=1&maxrating=99&teams%5B%5D=36&leagues[]=19&order=rating&s=desc" class="teamlogo36"><img src="/assets/img/fifa20/badges/36.png"></a>
-</div>
-</div>
-<div class="body">
-<h5><a href="/en/fifa21/career-mode/players?minrating=1&maxrating=99&teams%5B%5D=36&leagues[]=19&order=rating&s=desc">VfB Stuttgart</a><span class="tag">Germany 1. Bundesliga (1)</span></h5>
-</div>
-<div class="bottom">
-<div class="row">
-<div class="col-12 text-center">
-<p>Budget <strong>Â£17.6M</strong></p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="col-2" data-id="31" data-teamname="1. FC KÃ¶ln">
-<div class="league-module">
-<div class="image-bg" style="background:linear-gradient(0deg,rgba(255,1,1,0.4),rgba(255,1,1,0.4)),url(/assets/img/site/clubbg20.png);">
-<div class="image">
-<a href="/en/fifa21/career-mode/players?minrating=1&maxrating=99&teams%5B%5D=31&leagues[]=19&order=rating&s=desc" class="teamlogo31"><img src="/assets/img/fifa20/badges/31.png"></a>
-</div>
-</div>
-<div class="body">
-<h5><a href="/en/fifa21/career-mode/players?minrating=1&maxrating=99&teams%5B%5D=31&leagues[]=19&order=rating&s=desc">1. FC KÃ¶ln</a><span class="tag">Germany 1. Bundesliga (1)</span></h5>
-</div>
-<div class="bottom">
-<div class="row">
-<div class="col-12 text-center">
-<p>Budget <strong>Â£11M</strong></p>
-</div>
-</div>
-</div>
- </div>
-</div>
-<div class="col-2" data-id="38" data-teamname="Werder Bremen">
-<div class="league-module">
-<div class="image-bg" style="background:linear-gradient(0deg,rgba(1,150,85,0.4),rgba(1,150,85,0.4)),url(/assets/img/site/clubbg20.png);">
-<div class="image">
-<a href="/en/fifa21/career-mode/players?minrating=1&maxrating=99&teams%5B%5D=38&leagues[]=19&order=rating&s=desc" class="teamlogo38"><img src="/assets/img/fifa20/badges/38.png"></a>
-</div>
-</div>
-<div class="body">
-<h5><a href="/en/fifa21/career-mode/players?minrating=1&maxrating=99&teams%5B%5D=38&leagues[]=19&order=rating&s=desc">Werder Bremen</a><span class="tag">Germany 1. Bundesliga (1)</span></h5>
-</div>
-<div class="bottom">
-<div class="row">
-<div class="col-12 text-center">
-<p>Budget <strong>Â£10.6M</strong></p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="col-2" data-id="25" data-teamname="SC Freiburg">
-<div class="league-module">
-<div class="image-bg" style="background:linear-gradient(0deg,rgba(228,1,43,0.4),rgba(228,1,43,0.4)),url(/assets/img/site/clubbg20.png);">
-<div class="image">
-<a href="/en/fifa21/career-mode/players?minrating=1&maxrating=99&teams%5B%5D=25&leagues[]=19&order=rating&s=desc" class="teamlogo25"><img src="/assets/img/fifa20/badges/25.png"></a>
-</div>
-</div>
-<div class="body">
-<h5><a href="/en/fifa21/career-mode/players?minrating=1&maxrating=99&teams%5B%5D=25&leagues[]=19&order=rating&s=desc">SC Freiburg</a><span class="tag">Germany 1. Bundesliga (1)</span></h5>
-</div>
-<div class="bottom">
-<div class="row">
-<div class="col-12 text-center">
-<p>Budget <strong>Â£9.2M</strong></p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="col-2" data-id="100409" data-teamname="FC Augsburg">
-<div class="league-module">
-<div class="image-bg" style="background:linear-gradient(0deg,rgba(205,23,25,0.4),rgba(205,23,25,0.4)),url(/assets/img/site/clubbg20.png);">
-<div class="image">
-<a href="/en/fifa21/career-mode/players?minrating=1&maxrating=99&teams%5B%5D=100409&leagues[]=19&order=rating&s=desc" class="teamlogo100409"><img src="/assets/img/fifa20/badges/100409.png"></a>
-</div>
-</div>
-<div class="body">
-<h5><a href="/en/fifa21/career-mode/players?minrating=1&maxrating=99&teams%5B%5D=100409&leagues[]=19&order=rating&s=desc">FC Augsburg</a><span class="tag">Germany 1. Bundesliga (1)</span></h5>
-</div>
-<div class="bottom">
-<div class="row">
-<div class="col-12 text-center">
-<p>Budget <strong>Â£8.4M</strong></p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="col-2" data-id="169" data-teamname="1. FSV Mainz 05">
-<div class="league-module">
-<div class="image-bg" style="background:linear-gradient(0deg,rgba(227,6,19,0.4),rgba(227,6,19,0.4)),url(/assets/img/site/clubbg20.png);">
-<div class="image">
-<a href="/en/fifa21/career-mode/players?minrating=1&maxrating=99&teams%5B%5D=169&leagues[]=19&order=rating&s=desc" class="teamlogo169"><img src="/assets/img/fifa20/badges/169.png"></a>
-</div>
-</div>
-<div class="body">
-<h5><a href="/en/fifa21/career-mode/players?minrating=1&maxrating=99&teams%5B%5D=169&leagues[]=19&order=rating&s=desc">1. FSV Mainz 05</a><span class="tag">Germany 1. Bundesliga (1)</span></h5>
-</div>
-<div class="bottom">
-<div class="row">
-<div class="col-12 text-center">
-<p>Budget <strong>Â£8.1M</strong></p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="col-2" data-id="1831" data-teamname="1. FC Union Berlin">
-<div class="league-module">
-<div class="image-bg" style="background:linear-gradient(0deg,rgba(227,6,19,0.4),rgba(227,6,19,0.4)),url(/assets/img/site/clubbg20.png);">
-<div class="image">
-<a href="/en/fifa21/career-mode/players?minrating=1&maxrating=99&teams%5B%5D=1831&leagues[]=19&order=rating&s=desc" class="teamlogo1831"><img src="/assets/img/fifa20/badges/1831.png"></a>
-</div>
-</div>
-<div class="body">
-<h5><a href="/en/fifa21/career-mode/players?minrating=1&maxrating=99&teams%5B%5D=1831&leagues[]=19&order=rating&s=desc">1. FC Union Berlin</a><span class="tag">Germany 1. Bundesliga (1)</span></h5>
-</div>
-<div class="bottom">
-<div class="row">
-<div class="col-12 text-center">
-<p>Budget <strong>Â£5.7M</strong></p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="col-2" data-id="159" data-teamname="Arminia Bielefeld">
-<div class="league-module">
-<div class="image-bg" style="background:linear-gradient(0deg,rgba(1,1,1,0.4),rgba(1,1,1,0.4)),url(/assets/img/site/clubbg20.png);">
-<div class="image">
-<a href="/en/fifa21/career-mode/players?minrating=1&maxrating=99&teams%5B%5D=159&leagues[]=19&order=rating&s=desc" class="teamlogo159"><img src="/assets/img/fifa20/badges/159.png"></a>
-</div>
-</div>
-<div class="body">
-<h5><a href="/en/fifa21/career-mode/players?minrating=1&maxrating=99&teams%5B%5D=159&leagues[]=19&order=rating&s=desc">Arminia Bielefeld</a><span class="tag">Germany 1. Bundesliga (1)</span></h5>
-</div>
-<div class="bottom">
-<div class="row">
-<div class="col-12 text-center">
-<p>Budget <strong>Â£2M</strong></p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="row">
-<div class="col-12" style="margin-bottom:20px;margin-top:10px;">
-<a href="Javascript:;" onclick="showmoreteams()" class="showmoreclubs">Show More</a>
 </div>
 </div>
 </div>
 </div>
 <script>
-$('.futversion').val('CM 21');
-startfrom = 25;
-function showmoreteams() {
-    doloop = 0;
-    $('.teamlist .col-2').each(function(index) {
-        if(index > startfrom) {
-            if(doloop <= 24) {
-                $('.teamlogo'+$(this).attr('data-id')).html('<img src="/assets/img/fifa20/badges/'+$(this).attr('data-id')+'.png" style="box-shadow:none;">');
-                $(this).show();
-                doloop++;
-            }
-            else {
-                startfrom+=25;
-                return false;
-            }
-        }
+$(document).ready(function() {
+    $(".individual-stat-container").each(function () {
+        $(this).find(".individual-stat-bar-front").animate({
+            width: $(this).attr("data-percentage")+'%'
+        }, 2000);
     });
-}
-function searchClubs(tx) {
-    if(tx.length >= 3) {
-        $('.showmoreclubs').hide();
-        if(tx != '') {
-            $('.teamlist .col-2').each(function() {
-                $(this).hide();
-                if($(this).attr('data-teamname').toLowerCase().indexOf(tx.toLowerCase()) != -1) {
-                    $(this).show();
-                    $('.teamlogo'+$(this).attr('data-id')).html('<img src="/assets/img/fifa20/badges/'+$(this).attr('data-id')+'.png" style="box-shadow:none;">');
-                }
-            });
-        }
-        else {
-            $('.searchteam').attr('style','');
-        }
-    }
-}
-function openMenu(menuid) {
-    $('.'+menuid).toggle();
-}
-$('.mobilefilterbar a').on('click',function() {
-    $('#panel').append('<div class="filter-overlay"></div>');
-    $('.mobilefiltermenu').hide();
-    $('#mobmenu'+$(this).attr('data-menu')).show();
 });
+$('.futversion').val('CM 21');
 </script><div class="social">
 <div class="span12 footerad">
 <div class="ad-728-center">
@@ -1086,24 +1148,11 @@ Team FUTWIZ Partner
 <div class="col-3">
 <ul>
 <li>TOTW</li>
-<li><a href="/en/fifa21/totw/"></a></li>
-<li><a href="/en/fifa21/totw/"></a></li>
-<li><a href="/en/fifa21/totw/"></a></li>
-<li><a href="/en/fifa21/totw/"></a></li>
-<li><a href="/en/fifa21/totw/"></a></li>
-<li><a href="/en/fifa21/totw/"></a></li>
-<li><a href="/en/fifa21/totw/"></a></li>
-<li><a href="/en/fifa21/totw/"></a></li>
-<li><a href="/en/fifa21/totw/"></a></li>
-<li><a href="/en/fifa21/totw/"></a></li>
-<li><a href="/en/fifa21/totw/"></a></li>
-<li><a href="/en/fifa21/totw/"></a></li>
-<li><a href="/en/fifa21/totw/"></a></li>
-<li><a href="/en/fifa21/totw/"></a></li>
-<li><a href="/en/fifa21/totw/"></a></li>
-<li><a href="/en/fifa21/totw/"></a></li>
-<li><a href="/en/fifa21/totw/"></a></li>
-<li><a href="/en/fifa21/totw/"></a></li>
+<li><a href="/en/fifa21/totw/rttf-3">RTTF 3</a></li>
+<li><a href="/en/fifa21/totw/totw-12">TOTW 12</a></li>
+<li><a href="/en/fifa21/totw/freeze">FUT Freeze</a></li>
+<li><a href="/en/fifa21/totw/totw-11">TOTW 11</a></li>
+<li><a href="/en/fifa21/totw/totgs">TOTGS</a></li>
 </ul>
 </div>
 <div class="col-3">
@@ -1207,5 +1256,5 @@ setDview();
 <script src="/assets/js/futwiz-foot.js?8004"></script>
 <script>var sitelanguage = 'en';</script>
 <script src="/assets/js/lazysizes.min.js" async></script>
-<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam-cell.nr-data.net","licenseKey":"d52dd270f3","applicationID":"295558491","transactionName":"YVZRMBZSWUZRUE1eDVgccgcQWlhbH3BYRQdTQUcBBV5EGkZaXEBQBw==","queueTime":0,"applicationTime":167,"atts":"TRFSRl5ISkg=","errorBeacon":"bam-cell.nr-data.net","agent":""}</script></body>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam-cell.nr-data.net","licenseKey":"d52dd270f3","applicationID":"295558491","transactionName":"YVZRMBZSWUZRUE1eDVgccgcQWlhbH3BYRQdTQWMIBUpSRx9FUFIVBAI=","queueTime":0,"applicationTime":642,"atts":"TRFSRl5ISkg=","errorBeacon":"bam-cell.nr-data.net","agent":""}</script></body>
 </html>

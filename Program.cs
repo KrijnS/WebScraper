@@ -12,33 +12,16 @@ namespace WebScraper
         static void Main(string[] args)
         {
             Program program = new Program();
-            //string urlPlayers = "https://www.futwiz.com/en/fifa21/career-mode/players?minrating=1&maxrating=99&teams%5B%5D=246&leagues[]=10&order=rating&s=desc";
-            //string destinationPlayers = "../../players.txt";
-            string playerIdentifier = "<a href=" + '\u0022' + "/en/fifa21/career-mode/player/";
-
-            double[] budgets = program.GetBudgets("/en/fifa21/career-mode/teams?l=19");
-            for(int i = 0; i < budgets.Length; i++) { Console.WriteLine(budgets[i]); }
-
-            //Console.WriteLine(program.GetNumberOfPlayers("https://www.futwiz.com/en/fifa21/career-mode/players?minrating=1&maxrating=99&teams%5B%5D=21&leagues[]=19&order=rating&s=desc"));
-            //program.ReadPlayerLinks("https://www.futwiz.com/en/fifa21/career-mode/players?minrating=1&maxrating=99&teams%5B%5D=21&leagues[]=19&order=rating&s=desc");
-            // get all budgets
-            //string[] leagues = File.ReadAllLines("../../leagues.txt");
-            //for (int i = 0; i < leagues.Length; i++)
-            //{
-            ////    /*get all budgets */
-            //    //    /* access all budgets*/
-            //    for (int j = 0; j < values.Length; j++) { if (values[j] != null) { Console.WriteLine(i + ". " + values[j].Split('<')[0].Remove(0, 1)); } }/*.Split('<')[0].Remove(0, 1)*/ 
-            //}
-            //program.ParseAllLeagues();
-            //program.GetPages(urlPlayers, destinationPlayers, playerIdentifier, 2);
-            //league name Console.WriteLine(program.GetString("https://www.futwiz.com/en/fifa21/career-mode/teams?l=330", "<a href=" + '\u0022' + "/en/fifa21/career-mode/teams?l=330", '>').Split('<')[0]);
-            //player name Console.WriteLine(program.GetString("https://www.futwiz.com/en/fifa21/career-mode/player/steven-berghuis/3796", "<h1>", '>').Split('<')[0]);
-            //player nation Console.WriteLine(program.GetString("https://www.futwiz.com/en/fifa21/career-mode/player/steven-berghuis/3796", "<div style=" + '\u0022' + "font-size:14px;", '>', 1).Split('|')[0]);
+           
+            //program.GetPlayers("https://www.futwiz.com/en/fifa21/career-mode/players?minrating=1&maxrating=99&teams%5B%5D=21&leagues[]=19&order=rating&s=desc");
+            
+            Console.WriteLine(program.GetPlayerName("https://www.futwiz.com/en/fifa21/career-mode/player/steven-berghuis/3796"));
+            //Console.WriteLine(program.GetString("https://www.futwiz.com/en/fifa21/career-mode/player/steven-berghuis/3796", "<div style='\u0022'font-size:14px;", ">", 1).Split('|')[0]);
             Console.WriteLine("done");
             Console.Read();
         }
 
-
+        //get all pages related with url and identifier
         public void GetPages(string url, string destination, string identifier, int recurrance)
         {
             StringBuilder pages = new StringBuilder();
@@ -58,6 +41,7 @@ namespace WebScraper
             File.AppendAllText(destination, pages.ToString());
         }
 
+        //get string split at specific char
         public string GetString(string url, string identifier, char split)
         {
             string result = null;
@@ -76,24 +60,15 @@ namespace WebScraper
             }
             return result;
         }
-
-        public void GetPlayers()
-        {
-            string destination = "../../players.txt";
-            string identifier = "<td width=+ '\u0022' + 5% + '\u0022' + class=+ '\u0022' + face+ '\u0022' + >";
-            string[] teams = File.ReadAllLines("../../teams.txt");
-            for (int i = 0; i < teams.Length; i++)
-            {
-                GetPages("https://futwiz.com" + teams[i], destination, identifier, 2);
-            }
-        }
-
+        
+        //parse league name from league url
         public string GetLeagueName(string url, string localUrl)
         {
             return GetString(url, "<a href=" + '\u0022' + localUrl, '>').Split('<')[0];
 
         }
 
+        //read leagues and write them to leagues.txt file
         public void GetLeagues()
         {
             string url = "https://www.futwiz.com/en/fifa21/career-mode/teams?l=19";
@@ -102,6 +77,7 @@ namespace WebScraper
             GetPages(url, destination, identifier, 1);
         }
 
+        //read team urls and write them to teams.txt file
         public void GetTeams()
         {
             string destination = "../../teams.txt";
@@ -113,6 +89,7 @@ namespace WebScraper
             }
         }
 
+        //get output for a league in string form
         public string ParseLeague(string url, string localUrl)
         {
             string leagueName = GetLeagueName(url, localUrl);
@@ -122,17 +99,19 @@ namespace WebScraper
             return leagueName + " #teams " + teamAmount;
         }
 
+        //get output sequence of all leagues to console
         public void ParseAllLeagues()
         {
             StringBuilder output = new StringBuilder();
             string[] leagues = File.ReadAllLines("../../leagues.txt");
             for(int i = 0; i < leagues.Length; i++)
             {
-                output.Append(i + "," + ParseLeague("http://futwiz.com" + leagues[i], leagues[i]) + Environment.NewLine);
+                output.Append(i + ". " + ParseLeague("http://futwiz.com" + leagues[i], leagues[i]) + Environment.NewLine);
             }
             Console.WriteLine(output);
         }
 
+        //check how many lines start with specific starting sequence
         public int CheckNumberOfLineStarts(string url, string lineStart)
         {
             int number = 0;
@@ -152,8 +131,10 @@ namespace WebScraper
             return number;
         }
 
+        //get all occurences of specific start sequence and split on specific char
         public string[] GetAllOccurences(string url, string identifier, char split, int splitNumber)
         {
+            //initialise string array on number of occurences
             string[] values = new string[CheckNumberOfLineStarts(url, identifier)];
             int index = 0;
             WebClient client = new WebClient();
@@ -164,12 +145,15 @@ namespace WebScraper
             string[] lines = File.ReadAllLines(tempFile);
             for (int i = 0; i < lines.Length; i++)
             {
+                //add line if starts with starting sequence
                 if (lines[i].StartsWith(identifier))
                 {
+                    //check if splitNumber is smaller or equal to split string
                     if(lines[i].Split(split).Length <= splitNumber)
                     {
                         break;
                     }
+                    //add to initial array and increase counter of array
                     if(values.Length > index)
                     {
                         values[index] = lines[i].Split(split)[splitNumber];
@@ -181,6 +165,7 @@ namespace WebScraper
             return values;
         }
 
+        //parse HTML code in temp file
         public void ReadURLInTemp(string url)
         {
             WebClient client = new WebClient();
@@ -190,12 +175,14 @@ namespace WebScraper
             File.WriteAllText(tempFile, content);
         }
 
+        //filter file on specific start sequence of string
         public void FilterOnString(string filter, string file)
         {
             string[] strings = File.ReadAllLines(file);
             StringBuilder filteredStrings = new StringBuilder();
             for(int i = 0; i < strings.Length; i++)
             {
+                //add string to stringbuilder if given start sequence
                 if (strings[i].StartsWith(filter))
                 {
                     filteredStrings.Append(strings[i].Split('\u0022')[1] + Environment.NewLine);
@@ -204,6 +191,7 @@ namespace WebScraper
             File.WriteAllText(file, filteredStrings.ToString());
         }
 
+        //reads file where player links are double and only keeps 1st entries
         public StringBuilder DeleteDuplicatePlayerLinks(string file)
         {
             string[] strings = File.ReadAllLines(file);
@@ -218,22 +206,30 @@ namespace WebScraper
             return filteredStrings;
         }
 
-        public void ReadPlayerLinks(string url)
+        //read all player urls from club url
+        public void GetPlayers(string url)
         {
+            //first read team page in temp file
             ReadURLInTemp(url);
+            //filter on all player specific lines
             FilterOnString("<a href=\u0022/en/fifa21/career-mode/player/", tempFile);
+            //parse players and replace file
             File.AppendAllText("../../players.txt" , DeleteDuplicatePlayerLinks(tempFile).ToString());
         }
 
+        //get number of players of specific team from team url
         public int GetNumberOfPlayers(string url)
         {
             return CheckNumberOfLineStarts(url, "<a href=\u0022/en/fifa21/career-mode/player/") / 2;
         }
 
+        //return array of budgets in double form from league url
         public double[] GetBudgets(string url)
         {
+            //get all budget strings of page
             string[] values = GetAllOccurences("https://www.futwiz.com" + url, "<p>Budget <strong>", '>', 2);
             double[] budgets = new double[values.Length];
+            //convert strings via ConvertBudgets method
             for (int i = 0; i < values.Length; i++)
             {
                 budgets[i] = ConvertBudget(values[i]);
@@ -241,14 +237,25 @@ namespace WebScraper
             return budgets;
         }
 
+        //Convert strings of budgets to doubles
         public double ConvertBudget(string value)
         {
+            //initially budget is 0
             double budget = 0;
+            //remove excess from string
             value = value.Split('<')[0].Remove(0, 1).Split('\u00A3')[1];
+            //convert from K to 1.000 and M to 1.000.000
             if (value.Contains("M")) { value = value.Split('M')[0]; budget = Convert.ToDouble(value) * 1000000; }
             else if (value.Contains("K")) { value = value.Split('K')[0]; budget = Convert.ToDouble(value) * 1000; }
+            //fix for ToDouble() ignoring point symbol
             if (value.Contains(".")) { budget /= 10; }
             return budget;
+        }
+
+        //return player name from player url
+        public string GetPlayerName(string url)
+        {
+            return GetString("https://www.futwiz.com/en/fifa21/career-mode/player/steven-berghuis/3796", "<h1>", '>').Split('<')[0];
         }
     }
 }
