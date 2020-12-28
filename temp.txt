@@ -1256,5 +1256,5 @@ setDview();
 <script src="/assets/js/futwiz-foot.js?8004"></script>
 <script>var sitelanguage = 'en';</script>
 <script src="/assets/js/lazysizes.min.js" async></script>
-<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam-cell.nr-data.net","licenseKey":"d52dd270f3","applicationID":"295558491","transactionName":"YVZRMBZSWUZRUE1eDVgccgcQWlhbH3BYRQdTQWMIBUpSRx9FUFIVBAI=","queueTime":0,"applicationTime":136,"atts":"TRFSRl5ISkg=","errorBeacon":"bam-cell.nr-data.net","agent":""}</script></body>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam-cell.nr-data.net","licenseKey":"d52dd270f3","applicationID":"295558491","transactionName":"YVZRMBZSWUZRUE1eDVgccgcQWlhbH3BYRQdTQWMIBUpSRx9FUFIVBAI=","queueTime":0,"applicationTime":118,"atts":"TRFSRl5ISkg=","errorBeacon":"bam-cell.nr-data.net","agent":""}</script></body>
 </html>

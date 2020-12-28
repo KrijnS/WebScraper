@@ -12,10 +12,19 @@ namespace WebScraper
         static void Main(string[] args)
         {
             Program program = new Program();
-
+            string playerUrl = "https://www.futwiz.com/en/fifa21/career-mode/player/robert-lewandowski/12";
             //program.GetPlayers("https://www.futwiz.com/en/fifa21/career-mode/players?minrating=1&maxrating=99&teams%5B%5D=21&leagues[]=19&order=rating&s=desc");
             //program.ReadURLInTemp("https://www.futwiz.com/en/fifa21/career-mode/player/robert-lewandowski/12");
-            Console.WriteLine(program.GetPlayerOvr("https://www.futwiz.com/en/fifa21/career-mode/player/robert-lewandowski/12"));
+            Console.WriteLine(program.GetPlayerName(playerUrl));
+            Console.WriteLine(program.GetPlayerOvr(playerUrl));
+            Console.WriteLine(program.GetPlayerPot(playerUrl));
+
+            int[] stats = program.GetPlayerStats(playerUrl);
+            for(int i = 0; i < stats.Length; i++)
+            {
+                Console.WriteLine(stats[i]);
+            }
+            program.GetContractLength(playerUrl);
             //Console.WriteLine(program.GetString("https://www.futwiz.com/en/fifa21/career-mode/player/steven-berghuis/3796", "<div style='\u0022'font-size:14px;", ">", 1).Split('|')[0]);
             Console.WriteLine("done");
             Console.Read();
@@ -255,13 +264,67 @@ namespace WebScraper
         //return player name from player url
         public string GetPlayerName(string url)
         {
-            return GetString("https://www.futwiz.com/en/fifa21/career-mode/player/steven-berghuis/3796", "<h1>", '>', 1).Split('<')[0];
+            return GetString(url, "<h1>", '>', 1).Split('<')[0];
         }
 
+        //return player overall from player url
         public int GetPlayerOvr(string url)
         {
             return Int32.Parse(GetString(url, "<div class=\u0022cplayerprofile-ovr\u0022><p class=\u0022cprofstat\u0022>", '>', 2).Split('<')[0]);
         }
 
+        //return player potential from player url
+        public int GetPlayerPot(string url)
+        {
+            return Int32.Parse(GetString(url, "<div class=\u0022cplayerprofile-pot\u0022><p class=\u0022cprofstat\u0022>", '>', 2).Split('<')[0]);
+        }
+
+        //parse all player stats from player url
+        public int[] GetPlayerStats(string url)
+        {
+            int[] stats = new int[6];
+            string[] statStrings = GetStatStrings(url);
+
+            for(int i = 0; i < statStrings.Length; i++)
+            {
+                stats[i] = ParseStat(statStrings[i]);
+            }
+            return stats;
+        }
+
+        //get all strings containing a stat for players
+        public string[] GetStatStrings(string url)
+        {
+            string[] stats = new string[6];
+            int counter = 0;
+
+            WebClient client = new WebClient();
+            client.Headers.Add("User-Agent", "C# console program");
+
+            string content = client.DownloadString(url);
+            File.WriteAllText(tempFile, content);
+            string[] lines = File.ReadAllLines(tempFile);
+            for (int i = 0; i < lines.Length; i++)
+            {
+                if (lines[i].Contains("colour att"))
+                {
+                    stats[counter] = lines[i];
+                    counter++;
+                }
+            }
+            return stats;
+        }
+
+        //parse stat from string
+        public int ParseStat(string s)
+        {
+            return Int32.Parse(s.Split('>')[1].Split('<')[0]);
+        }
+        
+        public void GetContractLength(string url)
+        {
+            Console.WriteLine(GetString(url, "<div class=/u0022cprofile-inforbar-label ml", '>', 3));
+            //return Int32.Parse(GetString(url, "<div class=/u0022cprofile-inforbar-label ml-20", '>', 3).Split('<')[0]);
+        }
     }
 }
