@@ -12,10 +12,10 @@ namespace WebScraper
         static void Main(string[] args)
         {
             Program program = new Program();
-           
+
             //program.GetPlayers("https://www.futwiz.com/en/fifa21/career-mode/players?minrating=1&maxrating=99&teams%5B%5D=21&leagues[]=19&order=rating&s=desc");
-            
-            Console.WriteLine(program.GetPlayerName("https://www.futwiz.com/en/fifa21/career-mode/player/steven-berghuis/3796"));
+            //program.ReadURLInTemp("https://www.futwiz.com/en/fifa21/career-mode/player/robert-lewandowski/12");
+            Console.WriteLine(program.GetPlayerOvr("https://www.futwiz.com/en/fifa21/career-mode/player/robert-lewandowski/12"));
             //Console.WriteLine(program.GetString("https://www.futwiz.com/en/fifa21/career-mode/player/steven-berghuis/3796", "<div style='\u0022'font-size:14px;", ">", 1).Split('|')[0]);
             Console.WriteLine("done");
             Console.Read();
@@ -42,7 +42,7 @@ namespace WebScraper
         }
 
         //get string split at specific char
-        public string GetString(string url, string identifier, char split)
+        public string GetString(string url, string identifier, char split, int stringSplit)
         {
             string result = null;
             WebClient client = new WebClient();
@@ -55,7 +55,7 @@ namespace WebScraper
             {
                 if (lines[i].StartsWith(identifier))
                 {
-                    return lines[i].Split(split)[1];
+                    return lines[i].Split(split)[stringSplit];
                 }
             }
             return result;
@@ -64,7 +64,7 @@ namespace WebScraper
         //parse league name from league url
         public string GetLeagueName(string url, string localUrl)
         {
-            return GetString(url, "<a href=" + '\u0022' + localUrl, '>').Split('<')[0];
+            return GetString(url, "<a href=" + '\u0022' + localUrl, '>', 1).Split('<')[0];
 
         }
 
@@ -255,7 +255,13 @@ namespace WebScraper
         //return player name from player url
         public string GetPlayerName(string url)
         {
-            return GetString("https://www.futwiz.com/en/fifa21/career-mode/player/steven-berghuis/3796", "<h1>", '>').Split('<')[0];
+            return GetString("https://www.futwiz.com/en/fifa21/career-mode/player/steven-berghuis/3796", "<h1>", '>', 1).Split('<')[0];
         }
+
+        public int GetPlayerOvr(string url)
+        {
+            return Int32.Parse(GetString(url, "<div class=\u0022cplayerprofile-ovr\u0022><p class=\u0022cprofstat\u0022>", '>', 2).Split('<')[0]);
+        }
+
     }
 }
