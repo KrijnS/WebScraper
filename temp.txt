@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" /><script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={licenseKey:"d52dd270f3",applicationID:"295558491"};window.NREUM||(NREUM={}),__nr_require=function(e,t,n){function r(n){if(!t[n]){var i=t[n]={exports:{}};e[n][0].call(i.exports,function(t){var i=e[n][1][t];return r(i||t)},i,i.exports)}return t[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var i=0;i<n.length;i++)r(n[i]);return r}({1:[function(e,t,n){function r(){}function i(e,t,n){return function(){return o(e,[u.now()].concat(c(arguments)),t?null:this,n),t?void 0:this}}var o=e("handle"),a=e(6),c=e(7),f=e("ee").get("tracer"),u=e("loader"),s=NREUM;"undefined"==typeof window.newrelic&&(newrelic=s);var d=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],p="api-",l=p+"ixn-";a(d,function(e,t){s[t]=i(p+t,!0,"api")}),s.addPageAction=i(p+"addPageAction",!0),s.setCurrentRouteName=i(p+"routeName",!0),t.exports=newrelic,s.interaction=function(){return(new r).get()};var m=r.prototype={createTracer:function(e,t){var n={},r=this,i="function"==typeof t;return o(l+"tracer",[u.now(),e,n],r),function(){if(f.emit((i?"":"no-")+"fn-start",[u.now(),r,i],n),i)try{return t.apply(this,arguments)}catch(e){throw f.emit("fn-err",[arguments,this,e],n),e}finally{f.emit("fn-end",[u.now()],n)}}}};a("actionText,setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(e,t){m[t]=i(l+t)}),newrelic.noticeError=function(e,t){"string"==typeof e&&(e=new Error(e)),o("err",[e,u.now(),!1,t])}},{}],2:[function(e,t,n){function r(){return c.exists&&performance.now?Math.round(performance.now()):(o=Math.max((new Date).getTime(),o))-a}function i(){return o}var o=(new Date).getTime(),a=o,c=e(8);t.exports=r,t.exports.offset=a,t.exports.getLastTimestamp=i},{}],3:[function(e,t,n){function r(e,t){var n=e.getEntries();n.forEach(function(e){"first-paint"===e.name?d("timing",["fp",Math.floor(e.startTime)]):"first-contentful-paint"===e.name&&d("timing",["fcp",Math.floor(e.startTime)])})}function i(e,t){var n=e.getEntries();n.length>0&&d("lcp",[n[n.length-1]])}function o(e){e.getEntries().forEach(function(e){e.hadRecentInput||d("cls",[e])})}function a(e){if(e instanceof m&&!g){var t=Math.round(e.timeStamp),n={type:e.type};t<=p.now()?n.fid=p.now()-t:t>p.offset&&t<=Date.now()?(t-=p.offset,n.fid=p.now()-t):t=p.now(),g=!0,d("timing",["fi",t,n])}}function c(e){d("pageHide",[p.now(),e])}if(!("init"in NREUM&&"page_view_timing"in NREUM.init&&"enabled"in NREUM.init.page_view_timing&&NREUM.init.page_view_timing.enabled===!1)){var f,u,s,d=e("handle"),p=e("loader"),l=e(5),m=NREUM.o.EV;if("PerformanceObserver"in window&&"function"==typeof window.PerformanceObserver){f=new PerformanceObserver(r);try{f.observe({entryTypes:["paint"]})}catch(v){}u=new PerformanceObserver(i);try{u.observe({entryTypes:["largest-contentful-paint"]})}catch(v){}s=new PerformanceObserver(o);try{s.observe({type:"layout-shift",buffered:!0})}catch(v){}}if("addEventListener"in document){var g=!1,y=["click","keydown","mousedown","pointerdown","touchstart"];y.forEach(function(e){document.addEventListener(e,a,!1)})}l(c)}},{}],4:[function(e,t,n){function r(e,t){if(!i)return!1;if(e!==i)return!1;if(!t)return!0;if(!o)return!1;for(var n=o.split("."),r=t.split("."),a=0;a<r.length;a++)if(r[a]!==n[a])return!1;return!0}var i=null,o=null,a=/Version\/(\S+)\s+Safari/;if(navigator.userAgent){var c=navigator.userAgent,f=c.match(a);f&&c.indexOf("Chrome")===-1&&c.indexOf("Chromium")===-1&&(i="Safari",o=f[1])}t.exports={agent:i,version:o,match:r}},{}],5:[function(e,t,n){function r(e){function t(){e(a&&document[a]?document[a]:document[i]?"hidden":"visible")}"addEventListener"in document&&o&&document.addEventListener(o,t,!1)}t.exports=r;var i,o,a;"undefined"!=typeof document.hidden?(i="hidden",o="visibilitychange",a="visibilityState"):"undefined"!=typeof document.msHidden?(i="msHidden",o="msvisibilitychange"):"undefined"!=typeof document.webkitHidden&&(i="webkitHidden",o="webkitvisibilitychange",a="webkitVisibilityState")},{}],6:[function(e,t,n){function r(e,t){var n=[],r="",o=0;for(r in e)i.call(e,r)&&(n[o]=t(r,e[r]),o+=1);return n}var i=Object.prototype.hasOwnProperty;t.exports=r},{}],7:[function(e,t,n){function r(e,t,n){t||(t=0),"undefined"==typeof n&&(n=e?e.length:0);for(var r=-1,i=n-t||0,o=Array(i<0?0:i);++r<i;)o[r]=e[t+r];return o}t.exports=r},{}],8:[function(e,t,n){t.exports={exists:"undefined"!=typeof window.performance&&window.performance.timing&&"undefined"!=typeof window.performance.timing.navigationStart}},{}],ee:[function(e,t,n){function r(){}function i(e){function t(e){return e&&e instanceof r?e:e?f(e,c,o):o()}function n(n,r,i,o){if(!p.aborted||o){e&&e(n,r,i);for(var a=t(i),c=v(n),f=c.length,u=0;u<f;u++)c[u].apply(a,r);var d=s[w[n]];return d&&d.push([b,n,r,a]),a}}function l(e,t){h[e]=v(e).concat(t)}function m(e,t){var n=h[e];if(n)for(var r=0;r<n.length;r++)n[r]===t&&n.splice(r,1)}function v(e){return h[e]||[]}function g(e){return d[e]=d[e]||i(n)}function y(e,t){u(e,function(e,n){t=t||"feature",w[n]=t,t in s||(s[t]=[])})}var h={},w={},b={on:l,addEventListener:l,removeEventListener:m,emit:n,get:g,listeners:v,context:t,buffer:y,abort:a,aborted:!1};return b}function o(){return new r}function a(){(s.api||s.feature)&&(p.aborted=!0,s=p.backlog={})}var c="nr@context",f=e("gos"),u=e(6),s={},d={},p=t.exports=i();p.backlog=s},{}],gos:[function(e,t,n){function r(e,t,n){if(i.call(e,t))return e[t];var r=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,t,{value:r,writable:!0,enumerable:!1}),r}catch(o){}return e[t]=r,r}var i=Object.prototype.hasOwnProperty;t.exports=r},{}],handle:[function(e,t,n){function r(e,t,n,r){i.buffer([e],r),i.emit(e,t,n)}var i=e("ee").get("handle");t.exports=r,r.ee=i},{}],id:[function(e,t,n){function r(e){var t=typeof e;return!e||"object"!==t&&"function"!==t?-1:e===window?0:a(e,o,function(){return i++})}var i=1,o="nr@id",a=e("gos");t.exports=r},{}],loader:[function(e,t,n){function r(){if(!E++){var e=b.info=NREUM.info,t=p.getElementsByTagName("script")[0];if(setTimeout(u.abort,3e4),!(e&&e.licenseKey&&e.applicationID&&t))return u.abort();f(h,function(t,n){e[t]||(e[t]=n)});var n=a();c("mark",["onload",n+b.offset],null,"api"),c("timing",["load",n]);var r=p.createElement("script");r.src="https://"+e.agent,t.parentNode.insertBefore(r,t)}}function i(){"complete"===p.readyState&&o()}function o(){c("mark",["domContent",a()+b.offset],null,"api")}var a=e(2),c=e("handle"),f=e(6),u=e("ee"),s=e(4),d=window,p=d.document,l="addEventListener",m="attachEvent",v=d.XMLHttpRequest,g=v&&v.prototype;NREUM.o={ST:setTimeout,SI:d.setImmediate,CT:clearTimeout,XHR:v,REQ:d.Request,EV:d.Event,PR:d.Promise,MO:d.MutationObserver};var y=""+location,h={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1184.min.js"},w=v&&g&&g[l]&&!/CriOS/.test(navigator.userAgent),b=t.exports={offset:a.getLastTimestamp(),now:a,origin:y,features:{},xhrWrappable:w,userAgent:s};e(1),e(3),p[l]?(p[l]("DOMContentLoaded",o,!1),d[l]("load",r,!1)):(p[m]("onreadystatechange",i),d[m]("onload",r)),c("mark",["firstbyte",a.getLastTimestamp()],null,"api");var E=0},{}],"wrap-function":[function(e,t,n){function r(e){return!(e&&e instanceof Function&&e.apply&&!e[a])}var i=e("ee"),o=e(7),a="nr@original",c=Object.prototype.hasOwnProperty,f=!1;t.exports=function(e,t){function n(e,t,n,i){function nrWrapper(){var r,a,c,f;try{a=this,r=o(arguments),c="function"==typeof n?n(r,a):n||{}}catch(u){p([u,"",[r,a,i],c])}s(t+"start",[r,a,i],c);try{return f=e.apply(a,r)}catch(d){throw s(t+"err",[r,a,d],c),d}finally{s(t+"end",[r,a,f],c)}}return r(e)?e:(t||(t=""),nrWrapper[a]=e,d(e,nrWrapper),nrWrapper)}function u(e,t,i,o){i||(i="");var a,c,f,u="-"===i.charAt(0);for(f=0;f<t.length;f++)c=t[f],a=e[c],r(a)||(e[c]=n(a,u?c+i:i,o,c))}function s(n,r,i){if(!f||t){var o=f;f=!0;try{e.emit(n,r,i,t)}catch(a){p([a,n,r,i])}f=o}}function d(e,t){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(e);return n.forEach(function(n){Object.defineProperty(t,n,{get:function(){return e[n]},set:function(t){return e[n]=t,t}})}),t}catch(r){p([r])}for(var i in e)c.call(e,i)&&(t[i]=e[i]);return t}function p(t){try{e.emit("internal-error",t)}catch(n){}}return e||(e=i),n.inPlace=u,n.flag=a,n}},{}]},{},["loader"]);</script>
-<title>Robert Lewandowski FIFA 21 Career Mode Potential - 91 Rated - FUTWIZ</title>
+<title>Joshua Kimmich FIFA 21 Career Mode Potential - 88 Rated - FUTWIZ</title>
 <link rel="preconnect" href="https://tags.bkrtx.com/">
 <link rel="preconnect" href="https://securepubads.g.doubleclick.net/" crossorigin>
 <link rel="preconnect" href="https://cmp.network-n.com/" crossorigin>
 <meta content='width=device-width' name='viewport' />
-<meta name="description" content="Robert Lewandowski potential and stats for FIFA 21 Career Mode">
-<link rel="canonical" href="https://www.futwiz.com/en/fifa21/career-mode/player/robert-lewandowski/12" />
+<meta name="description" content="Joshua Kimmich potential and stats for FIFA 21 Career Mode">
+<link rel="canonical" href="https://www.futwiz.com/en/fifa21/career-mode/player/joshua-kimmich/111" />
 </script>
 <style>
         body {
@@ -43,7 +43,7 @@
 <script async src="/dist/setups/futwiz.min.js?r=451"></script>
 <script src="/assets/js/modernizr.js"></script>
 <link href="/assets/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-<link rel="stylesheet" href="/assets/css/global.css?r=470" type="text/css">
+<link rel="stylesheet" href="/assets/css/global.css?r=477" type="text/css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css" />
 <link href="https://fonts.googleapis.com/css?family=Maven+Pro:400,500,700&display=swap" rel="stylesheet">
 <link rel="shortcut icon" href="/favicon.ico">
@@ -57,7 +57,7 @@
 <div class="ad" id="nn_skinr"></div>
 <nav id="menu" style="display:none;">
 <ul>
-<li><a href="/en/login?return=/en/fifa21/career-mode/player/robert-lewandowski/12">Login or Sign Up</a></li>
+<li><a href="/en/login?return=/en/fifa21/career-mode/player/joshua-kimmich/111">Login or Sign Up</a></li>
 <li class="sub">
 <a href="Javascript:;">Players <i class="fa fa-chevron-right"></i></a>
 <ul class="menu">
@@ -103,7 +103,7 @@
 </ul>
 </li>
 <li class="sub">
-<a href="Javascript:;">Market <i class="fa fa-chevron-right"></i></a>
+ <a href="Javascript:;">Market <i class="fa fa-chevron-right"></i></a>
 <ul class="menu">
 <li><a href="/en/market/overall/playstation/live">Overall Market</a></li>
 <li><a href="/en/market/baseicons/playstation/live">Base Icons</a></li>
@@ -232,7 +232,7 @@
 <a href="">FIFA Generations</a>
 <ul class="dropright-menu" style="max-height:200px;overflow-y:auto;">
 <li><a href="/en/fifa20/players">FIFA 20 Players</a></li>
-<li><a href="/en/fifa19/players">FIFA 19 Players</a></li>
+ <li><a href="/en/fifa19/players">FIFA 19 Players</a></li>
 <li><a href="/en/fifa18/players">FIFA 18 Players</a></li>
 <li><a href="/en/fifa18/worldcup/players">FIFA 18 Worldcup Players</a></li>
 <li><a href="/en/fifa17/players">FIFA 17 Players</a></li>
@@ -242,7 +242,7 @@
 <li><a href="/en/fifa13/players">FIFA 13 Players</a></li>
 <li><a href="/en/fifa12/players">FIFA 12 Players</a></li>
 <li><a href="/en/fifa11/players">FIFA 11 Players</a></li>
- <li><a href="/en/fifa10/players">FIFA 10 Players</a></li>
+<li><a href="/en/fifa10/players">FIFA 10 Players</a></li>
 <li><a href="/en/worldcup-players">World Cup Players</a></li>
 </ul>
 </li>
@@ -293,7 +293,7 @@
 <a href="/en/market/89rated/playstation/live">89 Rated</a>
 <a href="/en/market/88rated/playstation/live">88 Rated</a>
 <a href="/en/market/87rated/playstation/live">87 Rated</a>
- <a href="/en/market/86rated/playstation/live">86 Rated</a>
+<a href="/en/market/86rated/playstation/live">86 Rated</a>
 <a href="/en/market/85rated/playstation/live">85 Rated</a>
 <a href="/en/market/84rated/playstation/live">84 Rated</a>
 <a href="/en/market/83rated/playstation/live">83 Rated</a>
@@ -344,7 +344,7 @@
 </ul>
 </li>
 <li><a href="/en/fut-champions/teams">Esport Teams</a></li>
- <li><a href="http://www.teamfutwiz.com" target="_BLANK">Team FUTWIZ</a></li>
+<li><a href="http://www.teamfutwiz.com" target="_BLANK">Team FUTWIZ</a></li>
 <li class="divider"></li>
 <li><a href="/en/gamestats"><img data-src="/assets/img/bargraph.png" width="17" alt="FUTWIZ GameStats" class="lazyload"> GameStats</a></li>
 </ul>
@@ -376,7 +376,7 @@ Twitter
 </a>
 </li>
 <li class="icons-990">
-<a href="/en/login?return=/en/fifa21/career-mode/player/robert-lewandowski/12">Login</a>
+<a href="/en/login?return=/en/fifa21/career-mode/player/joshua-kimmich/111">Login</a>
 </li>
 </ul>
 </li>
@@ -396,7 +396,7 @@ Twitter
 <a href="https://www.twitter.com/futwiz" target="_BLANK">
 <i class="fab fa-twitter"></i>
 </a>
-</li>
+ </li>
 <li>
 <a href="Javascript:;" onclick="$('#taxcalc').appendTo('body').modal('show');">
 <i class="fa fa-calculator"></i>
@@ -413,7 +413,7 @@ Twitter
 <nav class="sub">
 <ul>
 <li>
-<a href="/en/fifa21/totw/rttf-3">RTTF 3</a>
+<a href="/en/fifa21/totw/headliners">Headliners Team 1</a>
 </li>
 <li>
 <a href="/en/fifa21/all-totws">
@@ -666,36 +666,36 @@ Sell For
 <div class="playerprofile-head">
 <div class="playerprofile-hbar" style="background:rgba(,0.5);">
 <div class="playerprofile-hbar-ttl">
-<h1>Robert Lewandowski</h1>
-<div style="font-size:14px;margin-top:-10px;">Poland | Bayern MÃ¼nchen | Germany 1. Bundesliga (1)</div>
+<h1>Joshua Kimmich</h1>
+<div style="font-size:14px;margin-top:-10px;">Germany | Bayern MÃ¼nchen | Germany 1. Bundesliga (1)</div>
 </div>
 <div class="playerprofile-hbar-club"><img src="/assets/img/fifa21/badges/21.png" /></div>
 <div class="playerprofile-sep"></div>
-<div class="playerprofile-hbar-nat"><img src="/assets/img/fifa21/flags/37.png" /></div>
+<div class="playerprofile-hbar-nat"><img src="/assets/img/fifa21/flags/21.png" /></div>
 <div class="playerprofile-nav"></div>
 </div>
 </div>
 <div class="playerprofile-head">
 <div class="cplayerprofile-body">
 <div class="cplayerprofile-head">
-<img src="/assets/img/fifa21/careerfaces/188545.png" alt="Robert Lewandowski Face">
+<img src="/assets/img/fifa21/careerfaces/212622.png" alt="Joshua Kimmich Face">
 </div>
 <div class="cplayerprofile-data">
 <div class="pull-left">
-<div class="cplayerprofile-ovr"><p class="cprofstat">91</p><p class="cproflabel">OVR</p></div>
-<div class="cplayerprofile-pot"><p class="cprofstat">91</p><p class="cproflabel">POT</p></div>
-<div class="cplayerprofile-mobinfo"><div class="cplayerprofile-mob-pos">ST</div>
-</div>
+<div class="cplayerprofile-ovr"><p class="cprofstat">88</p><p class="cproflabel">OVR</p></div>
+<div class="cplayerprofile-pot"><p class="cprofstat">90</p><p class="cproflabel">POT</p></div>
+<div class="cplayerprofile-mobinfo"><div class="cplayerprofile-mob-pos">CDM, RB</div>
+<div class="realfacebutton mobrealface">Real Face</div></div>
 <div class="playerprofile-db">
-<p class="ppdb-d">32</p>
+<p class="ppdb-d">25</p>
 <p class="ppdb-l">AGE</p>
 </div>
 <div class="playerprofile-db">
-<p class="ppdb-d">6&#039; 0&quot;</p>
-<p class="ppdb-l">184cm TALL</p>
+<p class="ppdb-d">5&#039; 9&quot;</p>
+<p class="ppdb-l">176cm TALL</p>
 </div>
 <div class="playerprofile-db">
-<p class="ppdb-d">80kg</p>
+<p class="ppdb-d">73kg</p>
 <p class="ppdb-l">Weight</p>
 </div>
 <div class="playerprofile-db">
@@ -711,13 +711,13 @@ Sell For
 </div>
 <div class="cprofile-infobar">
 <div class="cprofile-infobardata">
-<div class="cprofile-infobarmargin">ST</div>
-<div class="cprofile-inforbar-label">Skills</div> <div class="cprofile-inforbar-stat wagevalue">4 <i class="fa fa-star"></i></div>
+<div class="cprofile-infobarmargin">CDM, RB</div>
+<div class="cprofile-inforbar-label">Skills</div> <div class="cprofile-inforbar-stat wagevalue">3 <i class="fa fa-star"></i></div>
 <div class="cprofile-inforbar-label">Weak Foot</div> <div class="cprofile-inforbar-stat wagevalue">4 <i class="fa fa-star"></i></div>
-<div class="cprofile-inforbar-label">Int. Rep</div> <div class="cprofile-inforbar-stat wagevalue">4 <i class="fa fa-star"></i></div>
-<div class="cprofile-inforbar-label ml-20">Contract</div> <div class="cprofile-inforbar-stat wagevalue">2023</div>
-<div class="cprofile-inforbar-label" style="margin-left:10px;">Value</div> <div class="cprofile-inforbar-stat career-value">&pound;96M</div>
-<div class="cprofile-inforbar-label">Wage</div> <div class="cprofile-inforbar-stat wagevalue">&pound;220K</div>
+<div class="cprofile-inforbar-label">Int. Rep</div> <div class="cprofile-inforbar-stat wagevalue">3 <i class="fa fa-star"></i></div>
+<div class="realfacebutton">Real Face</div> <div class="cprofile-inforbar-label ml-20">Contract</div> <div class="cprofile-inforbar-stat wagevalue">2023</div>
+<div class="cprofile-inforbar-label" style="margin-left:10px;">Value</div> <div class="cprofile-inforbar-stat career-value">&pound;92.5M</div>
+<div class="cprofile-inforbar-label">Wage</div> <div class="cprofile-inforbar-stat wagevalue">&pound;130K</div>
 </div>
 </div>
 </div>
@@ -727,7 +727,7 @@ Sell For
 </div>
 <div class="playerprofile-info-mobile">
 <div class="playerprofile-db">
-<p class="ppdb-d ppskills">4 <i class="fa fa-star"></i></p>
+<p class="ppdb-d ppskills">3 <i class="fa fa-star"></i></p>
 <p class="ppdb-l">Skills</p>
 </div>
 <div class="playerprofile-db">
@@ -735,15 +735,15 @@ Sell For
 <p class="ppdb-l">Weakfoot</p>
 </div>
 <div class="playerprofile-db">
-<p class="ppdb-d">32</p>
+<p class="ppdb-d">25</p>
 <p class="ppdb-l">AGE</p>
 </div>
 <div class="playerprofile-db">
-<p class="ppdb-d">6&#039; 0&quot;</p>
-<p class="ppdb-l">184cm TALL</p>
+<p class="ppdb-d">5&#039; 9&quot;</p>
+<p class="ppdb-l">176cm TALL</p>
 </div>
 <div class="playerprofile-db">
-<p class="ppdb-d">80kg</p>
+<p class="ppdb-d">73kg</p>
 <p class="ppdb-l">Weight</p>
 </div>
 <div class="playerprofile-db">
@@ -757,11 +757,11 @@ Sell For
 </div>
 <div class="playerprofile-info-mobile">
 <div class="playerprofile-db">
-<p class="ppdb-d ppskills">4 <i class="fa fa-star"></i></p>
+<p class="ppdb-d ppskills">3 <i class="fa fa-star"></i></p>
 <p class="ppdb-l">Int. Rep</p>
 </div>
 <div class="playerprofile-db">
-<p class="ppdb-d ppskills">02/07/2014</p>
+<p class="ppdb-d ppskills">02/07/2015</p>
 <p class="ppdb-l">Joined Team</p>
 </div>
 <div class="playerprofile-db">
@@ -778,7 +778,7 @@ Sell For
 <div class="statBlock">
 <div class="title">
 <div class="pull-left padtop-2">Pac</div>
-<div class="highbarcolour att1bar">78</div>
+<div class="highbarcolour att1bar">71</div>
 <div class="clearfix"></div>
 </div>
 <div class="individual-stat-container" data-percentage="78">
@@ -787,11 +787,11 @@ Sell For
 <div class="individual-stat-bar-back"></div>
 <div class="individual-stat-bar-front highbarcolour accelerationbar"></div>
 </div>
-<div class="individual-stat-container" data-percentage="79">
+<div class="individual-stat-container" data-percentage="67">
 <div class="individual-stat-bar-label">Sprint Speed<span class="sprintspeedboost" style="padding-left:10px;font-size:12px;"></span></div>
-<div class="individual-stat-bar-stat textcolour sprintspeedstat">78</div>
+<div class="individual-stat-bar-stat textcolour sprintspeedstat">66</div>
 <div class="individual-stat-bar-back"></div>
-<div class="individual-stat-bar-front highbarcolour sprintspeedbar"></div>
+<div class="individual-stat-bar-front mediumbarcolour sprintspeedbar"></div>
 </div>
 </div>
 </div>
@@ -799,44 +799,44 @@ Sell For
 <div class="statBlock">
 <div class="title">
 <div class="pull-left padtop-2">Sho</div>
-<div class="highestbarcolour att2bar">91</div>
-<div class="clearfix"></div>
+<div class="highbarcolour att2bar">73</div>
+ <div class="clearfix"></div>
 </div>
-<div class="individual-stat-container" data-percentage="95">
+<div class="individual-stat-container" data-percentage="81">
 <div class="individual-stat-bar-label">Positioning<span class="positioningboost" style="padding-left:10px;font-size:12px;"></span></div>
-<div class="individual-stat-bar-stat textcolour positioningstat">94</div>
+<div class="individual-stat-bar-stat textcolour positioningstat">80</div>
 <div class="individual-stat-bar-back"></div>
-<div class="individual-stat-bar-front highestbarcolour positioningbar"></div>
+<div class="individual-stat-bar-front highbarcolour positioningbar"></div>
 </div>
-<div class="individual-stat-container" data-percentage="95">
+<div class="individual-stat-container" data-percentage="69">
 <div class="individual-stat-bar-label">Finishing<span class="finishingboost" style="padding-left:10px;font-size:12px;"></span></div>
-<div class="individual-stat-bar-stat textcolour finishingstat">94</div>
+<div class="individual-stat-bar-stat textcolour finishingstat">68</div>
 <div class="individual-stat-bar-back"></div>
-<div class="individual-stat-bar-front highestbarcolour finishingbar"></div>
+<div class="individual-stat-bar-front mediumbarcolour finishingbar"></div>
 </div>
-<div class="individual-stat-container" data-percentage="86">
+<div class="individual-stat-container" data-percentage="85">
 <div class="individual-stat-bar-label">Long Shots<span class="longshotboost" style="padding-left:10px;font-size:12px;"></span></div>
-<div class="individual-stat-bar-stat textcolour longshotstat">85</div>
+<div class="individual-stat-bar-stat textcolour longshotstat">84</div>
 <div class="individual-stat-bar-back"></div>
 <div class="individual-stat-bar-front highestbarcolour longshotbar"></div>
 </div>
-<div class="individual-stat-container" data-percentage="90">
+<div class="individual-stat-container" data-percentage="45">
 <div class="individual-stat-bar-label">Penalties<span class="penaltiesboost" style="padding-left:10px;font-size:12px;"></span></div>
-<div class="individual-stat-bar-stat textcolour penaltiesstat">89</div>
+<div class="individual-stat-bar-stat textcolour penaltiesstat">44</div>
 <div class="individual-stat-bar-back"></div>
-<div class="individual-stat-bar-front highestbarcolour penaltiesbar"></div>
+<div class="individual-stat-bar-front lowbarcolour penaltiesbar"></div>
 </div>
-<div class="individual-stat-container" data-percentage="90">
+<div class="individual-stat-container" data-percentage="79">
 <div class="individual-stat-bar-label">Shot Power<span class="shotpowerboost" style="padding-left:10px;font-size:12px;"></span></div>
-<div class="individual-stat-bar-stat textcolour shotpowerstat">89</div>
+<div class="individual-stat-bar-stat textcolour shotpowerstat">78</div>
 <div class="individual-stat-bar-back"></div>
-<div class="individual-stat-bar-front highestbarcolour shotpowerbar"></div>
+<div class="individual-stat-bar-front highbarcolour shotpowerbar"></div>
 </div>
-<div class="individual-stat-container" data-percentage="90">
+<div class="individual-stat-container" data-percentage="70">
 <div class="individual-stat-bar-label">Volleys<span class="volleysboost" style="padding-left:10px;font-size:12px;"></span></div>
-<div class="individual-stat-bar-stat textcolour volleysstat">89</div>
+<div class="individual-stat-bar-stat textcolour volleysstat">69</div>
 <div class="individual-stat-bar-back"></div>
-<div class="individual-stat-bar-front highestbarcolour volleysbar"></div>
+<div class="individual-stat-bar-front mediumbarcolour volleysbar"></div>
 </div>
 </div>
 </div>
@@ -844,42 +844,42 @@ Sell For
 <div class="statBlock">
 <div class="title">
 <div class="pull-left padtop-2">Pas</div>
-<div class="highbarcolour att3bar">79</div>
+<div class="highestbarcolour att3bar">86</div>
 <div class="clearfix"></div>
 </div>
-<div class="individual-stat-container" data-percentage="72">
+ <div class="individual-stat-container" data-percentage="92">
 <div class="individual-stat-bar-label">Crossing<span class="crossingboost" style="padding-left:10px;font-size:12px;"></span></div>
-<div class="individual-stat-bar-stat textcolour crossingstat">71</div>
+<div class="individual-stat-bar-stat textcolour crossingstat">91</div>
 <div class="individual-stat-bar-back"></div>
-<div class="individual-stat-bar-front highbarcolour crossingbar"></div>
-</div>
-<div class="individual-stat-container" data-percentage="80">
-<div class="individual-stat-bar-label">Curve<span class="curveboost" style="padding-left:10px;font-size:12px;"></span></div>
-<div class="individual-stat-bar-stat textcolour curvestat">79</div>
-<div class="individual-stat-bar-back"></div>
-<div class="individual-stat-bar-front highbarcolour curvebar"></div>
-</div>
- <div class="individual-stat-container" data-percentage="86">
-<div class="individual-stat-bar-label">FK. Accuracy<span class="fkaccboost" style="padding-left:10px;font-size:12px;"></span></div>
-<div class="individual-stat-bar-stat textcolour fkaccstat">85</div>
-<div class="individual-stat-bar-back"></div>
-<div class="individual-stat-bar-front highestbarcolour fkaccbar"></div>
-</div>
-<div class="individual-stat-container" data-percentage="71">
-<div class="individual-stat-bar-label">Long Pass<span class="longpassboost" style="padding-left:10px;font-size:12px;"></span></div>
-<div class="individual-stat-bar-stat textcolour longpassstat">70</div>
-<div class="individual-stat-bar-back"></div>
-<div class="individual-stat-bar-front mediumbarcolour longpassbar"></div>
+<div class="individual-stat-bar-front highestbarcolour crossingbar"></div>
 </div>
 <div class="individual-stat-container" data-percentage="86">
+<div class="individual-stat-bar-label">Curve<span class="curveboost" style="padding-left:10px;font-size:12px;"></span></div>
+<div class="individual-stat-bar-stat textcolour curvestat">85</div>
+<div class="individual-stat-bar-back"></div>
+<div class="individual-stat-bar-front highestbarcolour curvebar"></div>
+</div>
+<div class="individual-stat-container" data-percentage="62">
+<div class="individual-stat-bar-label">FK. Accuracy<span class="fkaccboost" style="padding-left:10px;font-size:12px;"></span></div>
+<div class="individual-stat-bar-stat textcolour fkaccstat">61</div>
+<div class="individual-stat-bar-back"></div>
+<div class="individual-stat-bar-front mediumbarcolour fkaccbar"></div>
+</div>
+<div class="individual-stat-container" data-percentage="87">
+<div class="individual-stat-bar-label">Long Pass<span class="longpassboost" style="padding-left:10px;font-size:12px;"></span></div>
+<div class="individual-stat-bar-stat textcolour longpassstat">86</div>
+<div class="individual-stat-bar-back"></div>
+<div class="individual-stat-bar-front highestbarcolour longpassbar"></div>
+</div>
+<div class="individual-stat-container" data-percentage="88">
 <div class="individual-stat-bar-label">Short Pass.<span class="shortpassboost" style="padding-left:10px;font-size:12px;"></span></div>
-<div class="individual-stat-bar-stat textcolour shortpassstat">85</div>
+<div class="individual-stat-bar-stat textcolour shortpassstat">87</div>
 <div class="individual-stat-bar-back"></div>
 <div class="individual-stat-bar-front highestbarcolour shortpassbar"></div>
 </div>
-<div class="individual-stat-container" data-percentage="82">
+<div class="individual-stat-container" data-percentage="85">
 <div class="individual-stat-bar-label">Vision<span class="visionboost" style="padding-left:10px;font-size:12px;"></span></div>
-<div class="individual-stat-bar-stat textcolour visionstat">81</div>
+<div class="individual-stat-bar-stat textcolour visionstat">84</div>
 <div class="individual-stat-bar-back"></div>
 <div class="individual-stat-bar-front highestbarcolour visionbar"></div>
 </div>
@@ -889,42 +889,42 @@ Sell For
 <div class="statBlock">
 <div class="title">
 <div class="pull-left padtop-2">Dri</div>
-<div class="highestbarcolour att4bar">85</div>
+<div class="highestbarcolour att4bar">84</div>
 <div class="clearfix"></div>
 </div>
-<div class="individual-stat-container" data-percentage="78">
+<div class="individual-stat-container" data-percentage="85">
 <div class="individual-stat-bar-label">Agility<span class="agilityboost" style="padding-left:10px;font-size:12px;"></span></div>
-<div class="individual-stat-bar-stat textcolour agilitystat">77</div>
+<div class="individual-stat-bar-stat textcolour agilitystat">84</div>
 <div class="individual-stat-bar-back"></div>
-<div class="individual-stat-bar-front highbarcolour agilitybar"></div>
+<div class="individual-stat-bar-front highestbarcolour agilitybar"></div>
 </div>
-<div class="individual-stat-container" data-percentage="83">
+<div class="individual-stat-container" data-percentage="85">
 <div class="individual-stat-bar-label">Balance<span class="balanceboost" style="padding-left:10px;font-size:12px;"></span></div>
-<div class="individual-stat-bar-stat textcolour balancestat">82</div>
+<div class="individual-stat-bar-stat textcolour balancestat">84</div>
 <div class="individual-stat-bar-back"></div>
 <div class="individual-stat-bar-front highestbarcolour balancebar"></div>
 </div>
-<div class="individual-stat-container" data-percentage="89">
+<div class="individual-stat-container" data-percentage="86">
 <div class="individual-stat-bar-label">Ball Control<span class="ballcontrolboost" style="padding-left:10px;font-size:12px;"></span></div>
-<div class="individual-stat-bar-stat textcolour ballcontrolstat">88</div>
+<div class="individual-stat-bar-stat textcolour ballcontrolstat">85</div>
 <div class="individual-stat-bar-back"></div>
 <div class="individual-stat-bar-front highestbarcolour ballcontrolbar"></div>
 </div>
-<div class="individual-stat-container" data-percentage="86">
+<div class="individual-stat-container" data-percentage="84">
 <div class="individual-stat-bar-label">Dribbling<span class="dribblingboost" style="padding-left:10px;font-size:12px;"></span></div>
-<div class="individual-stat-bar-stat textcolour dribblingstat">85</div>
+<div class="individual-stat-bar-stat textcolour dribblingstat">83</div>
 <div class="individual-stat-bar-back"></div>
 <div class="individual-stat-bar-front highestbarcolour dribblingbar"></div>
 </div>
-<div class="individual-stat-container" data-percentage="94">
+<div class="individual-stat-container" data-percentage="89">
 <div class="individual-stat-bar-label">Reactions<span class="reactionsboost" style="padding-left:10px;font-size:12px;"></span></div>
-<div class="individual-stat-bar-stat textcolour reactionsstat">93</div>
+<div class="individual-stat-bar-stat textcolour reactionsstat">88</div>
 <div class="individual-stat-bar-back"></div>
 <div class="individual-stat-bar-front highestbarcolour reactionsbar"></div>
 </div>
-<div class="individual-stat-container" data-percentage="89">
+<div class="individual-stat-container" data-percentage="86">
 <div class="individual-stat-bar-label">Composure<span class="composureboost" style="padding-left:10px;font-size:12px;"></span></div>
-<div class="individual-stat-bar-stat textcolour composurestat">88</div>
+<div class="individual-stat-bar-stat textcolour composurestat">85</div>
 <div class="individual-stat-bar-back"></div>
 <div class="individual-stat-bar-front highestbarcolour composurebar"></div>
 </div>
@@ -934,38 +934,38 @@ Sell For
 <div class="statBlock">
 <div class="title">
 <div class="pull-left padtop-2">Def</div>
-<div class="lowbarcolour att5bar">44</div>
+<div class="highestbarcolour att5bar">82</div>
 <div class="clearfix"></div>
 </div>
-<div class="individual-stat-container" data-percentage="88">
+<div class="individual-stat-container" data-percentage="73">
 <div class="individual-stat-bar-label">Heading Acc.<span class="headingaccboost" style="padding-left:10px;font-size:12px;"></span></div>
-<div class="individual-stat-bar-stat textcolour headingaccstat">87</div>
+<div class="individual-stat-bar-stat textcolour headingaccstat">72</div>
 <div class="individual-stat-bar-back"></div>
-<div class="individual-stat-bar-front highestbarcolour headingaccbar"></div>
+<div class="individual-stat-bar-front highbarcolour headingaccbar"></div>
 </div>
-<div class="individual-stat-container" data-percentage="50">
+<div class="individual-stat-container" data-percentage="83">
 <div class="individual-stat-bar-label">Interceptions<span class="tactawareboost" style="padding-left:10px;font-size:12px;"></span></div>
-<div class="individual-stat-bar-stat textcolour tactawarestat">49</div>
+<div class="individual-stat-bar-stat textcolour tactawarestat">82</div>
 <div class="individual-stat-bar-back"></div>
-<div class="individual-stat-bar-front lowbarcolour tactawarebar"></div>
+<div class="individual-stat-bar-front highestbarcolour tactawarebar"></div>
 </div>
-<div class="individual-stat-container" data-percentage="36">
+<div class="individual-stat-container" data-percentage="84">
 <div class="individual-stat-bar-label">Marking<span class="markingboost" style="padding-left:10px;font-size:12px;"></span></div>
-<div class="individual-stat-bar-stat textcolour markingstat">35</div>
+<div class="individual-stat-bar-stat textcolour markingstat">83</div>
 <div class="individual-stat-bar-back"></div>
-<div class="individual-stat-bar-front lowbarcolour markingbar"></div>
+<div class="individual-stat-bar-front highestbarcolour markingbar"></div>
 </div>
-<div class="individual-stat-container" data-percentage="43">
+<div class="individual-stat-container" data-percentage="85">
 <div class="individual-stat-bar-label">Stand Tackle<span class="standingtackleboost" style="padding-left:10px;font-size:12px;"></span></div>
-<div class="individual-stat-bar-stat textcolour standingtacklestat">42</div>
+<div class="individual-stat-bar-stat textcolour standingtacklestat">84</div>
 <div class="individual-stat-bar-back"></div>
-<div class="individual-stat-bar-front lowbarcolour standingtacklebar"></div>
+<div class="individual-stat-bar-front highestbarcolour standingtacklebar"></div>
 </div>
-<div class="individual-stat-container" data-percentage="20">
+<div class="individual-stat-container" data-percentage="80">
 <div class="individual-stat-bar-label">Slide Tackle<span class="slidetackleboost" style="padding-left:10px;font-size:12px;"></span></div>
-<div class="individual-stat-bar-stat textcolour slidetacklestat">19</div>
+<div class="individual-stat-bar-stat textcolour slidetacklestat">79</div>
 <div class="individual-stat-bar-back"></div>
-<div class="individual-stat-bar-front lowbarcolour slidetacklebar"></div>
+<div class="individual-stat-bar-front highbarcolour slidetacklebar"></div>
 </div>
 </div>
 </div>
@@ -973,32 +973,32 @@ Sell For
 <div class="statBlock">
 <div class="title">
 <div class="pull-left padtop-2">Phy</div>
-<div class="highestbarcolour att6bar">82</div>
+<div class="highbarcolour att6bar">79</div>
 <div class="clearfix"></div>
 </div>
-<div class="individual-stat-container" data-percentage="82">
+<div class="individual-stat-container" data-percentage="90">
 <div class="individual-stat-bar-label">Aggression<span class="aggressionboost" style="padding-left:10px;font-size:12px;"></span></div>
-<div class="individual-stat-bar-stat textcolour aggressionstat">81</div>
+<div class="individual-stat-bar-stat textcolour aggressionstat">89</div>
 <div class="individual-stat-bar-back"></div>
 <div class="individual-stat-bar-front highestbarcolour aggressionbar"></div>
 </div>
-<div class="individual-stat-container" data-percentage="85">
+<div class="individual-stat-container" data-percentage="80">
 <div class="individual-stat-bar-label">Jumping<span class="jumpingboost" style="padding-left:10px;font-size:12px;"></span></div>
-<div class="individual-stat-bar-stat textcolour jumpingstat">84</div>
+<div class="individual-stat-bar-stat textcolour jumpingstat">79</div>
 <div class="individual-stat-bar-back"></div>
-<div class="individual-stat-bar-front highestbarcolour jumpingbar"></div>
+ <div class="individual-stat-bar-front highbarcolour jumpingbar"></div>
 </div>
-<div class="individual-stat-container" data-percentage="77">
+<div class="individual-stat-container" data-percentage="96">
 <div class="individual-stat-bar-label">Stamina<span class="staminaboost" style="padding-left:10px;font-size:12px;"></span></div>
-<div class="individual-stat-bar-stat textcolour staminastat">76</div>
+<div class="individual-stat-bar-stat textcolour staminastat">95</div>
 <div class="individual-stat-bar-back"></div>
-<div class="individual-stat-bar-front highbarcolour staminabar"></div>
+<div class="individual-stat-bar-front highestbarcolour staminabar"></div>
 </div>
-<div class="individual-stat-container" data-percentage="87">
+<div class="individual-stat-container" data-percentage="68">
 <div class="individual-stat-bar-label">Strength<span class="strengthboost" style="padding-left:10px;font-size:12px;"></span></div>
-<div class="individual-stat-bar-stat textcolour strengthstat">86</div>
+<div class="individual-stat-bar-stat textcolour strengthstat">67</div>
 <div class="individual-stat-bar-back"></div>
- <div class="individual-stat-bar-front highestbarcolour strengthbar"></div>
+<div class="individual-stat-bar-front mediumbarcolour strengthbar"></div>
 </div>
 </div>
 </div>
@@ -1006,44 +1006,44 @@ Sell For
 </div>
 <div class="playerprofile-pitch careerpitch">
 <div class="mt-10 altpos-pitch mb-20">
-<div class="altpos-pos poscb stat-label-medium">
-<div class="altpos-inner-l1">61</div>
+<div class="altpos-pos poscb stat-label-highest">
+<div class="altpos-inner-l1">81</div>
 <div class="altpos-inner-l2">CB</div>
 </div>
-<div class="altpos-pos poscdm stat-label-medium">
-<div class="altpos-inner-l1">67</div>
+<div class="altpos-pos poscdm stat-label-highest">
+<div class="altpos-inner-l1">86</div>
 <div class="altpos-inner-l2">CDM</div>
 </div>
 <div class="altpos-pos poscm stat-label-highest">
-<div class="altpos-inner-l1">81</div>
+<div class="altpos-inner-l1">86</div>
 <div class="altpos-inner-l2">CM</div>
 </div>
 <div class="altpos-pos poscam stat-label-highest">
-<div class="altpos-inner-l1">87</div>
+<div class="altpos-inner-l1">84</div>
 <div class="altpos-inner-l2">CAM</div>
 </div>
 <div class="altpos-pos poscf stat-label-highest">
-<div class="altpos-inner-l1">89</div>
+<div class="altpos-inner-l1">82</div>
 <div class="altpos-inner-l2">CF</div>
 </div>
-<div class="altpos-pos posst stat-label-highest">
-<div class="altpos-inner-l1">90</div>
+<div class="altpos-pos posst stat-label-high">
+<div class="altpos-inner-l1">78</div>
 <div class="altpos-inner-l2">ST</div>
 </div>
 <div class="altpos-pos poslw stat-label-highest">
-<div class="altpos-inner-l1">86</div>
+<div class="altpos-inner-l1">83</div>
 <div class="altpos-inner-l2">LW</div>
 </div>
 <div class="altpos-pos poslf stat-label-highest">
-<div class="altpos-inner-l1">89</div>
+<div class="altpos-inner-l1">82</div>
 <div class="altpos-inner-l2">LF</div>
 </div>
 <div class="altpos-pos posrf stat-label-highest">
-<div class="altpos-inner-l1">89</div>
+<div class="altpos-inner-l1">82</div>
 <div class="altpos-inner-l2">RF</div>
 </div>
 <div class="altpos-pos posrw stat-label-highest">
-<div class="altpos-inner-l1">86</div>
+<div class="altpos-inner-l1">83</div>
 <div class="altpos-inner-l2">RW</div>
 </div>
 <div class="altpos-pos poslm stat-label-highest">
@@ -1052,22 +1052,22 @@ Sell For
 </div>
 <div class="altpos-pos posrm stat-label-highest">
 <div class="altpos-inner-l1">84</div>
-<div class="altpos-inner-l2">RM</div>
+ <div class="altpos-inner-l2">RM</div>
 </div>
-<div class="altpos-pos posrb stat-label-medium">
-<div class="altpos-inner-l1">62</div>
+<div class="altpos-pos posrb stat-label-highest">
+<div class="altpos-inner-l1">84</div>
 <div class="altpos-inner-l2">RB</div>
 </div>
-<div class="altpos-pos posrwb stat-label-medium">
-<div class="altpos-inner-l1">65</div>
+<div class="altpos-pos posrwb stat-label-highest">
+<div class="altpos-inner-l1">85</div>
 <div class="altpos-inner-l2">RWB</div>
 </div>
-<div class="altpos-pos poslb stat-label-medium">
-<div class="altpos-inner-l1">62</div>
+<div class="altpos-pos poslb stat-label-highest">
+<div class="altpos-inner-l1">84</div>
 <div class="altpos-inner-l2">LB</div>
 </div>
-<div class="altpos-pos poslwb stat-label-medium">
-<div class="altpos-inner-l1">65</div>
+<div class="altpos-pos poslwb stat-label-highest">
+<div class="altpos-inner-l1">85</div>
 <div class="altpos-inner-l2">LWB</div>
 </div>
 </div>
@@ -1148,17 +1148,17 @@ Team FUTWIZ Partner
 <div class="col-3">
 <ul>
 <li>TOTW</li>
+<li><a href="/en/fifa21/totw/headliners">Headliners Team 1</a></li>
+<li><a href="/en/fifa21/totw/totw-14">TOTW 14</a></li>
+<li><a href="/en/fifa21/totw/totw-13">TOTW 13</a></li>
 <li><a href="/en/fifa21/totw/rttf-3">RTTF 3</a></li>
 <li><a href="/en/fifa21/totw/totw-12">TOTW 12</a></li>
-<li><a href="/en/fifa21/totw/freeze">FUT Freeze</a></li>
-<li><a href="/en/fifa21/totw/totw-11">TOTW 11</a></li>
-<li><a href="/en/fifa21/totw/totgs">TOTGS</a></li>
 </ul>
 </div>
 <div class="col-3">
 <p>
 <small>
-&copy; 2020 Webeast Ltd
+&copy; 2021 Webeast Ltd
 </small>
 </p>
 <p>
@@ -1256,5 +1256,5 @@ setDview();
 <script src="/assets/js/futwiz-foot.js?8004"></script>
 <script>var sitelanguage = 'en';</script>
 <script src="/assets/js/lazysizes.min.js" async></script>
-<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam-cell.nr-data.net","licenseKey":"d52dd270f3","applicationID":"295558491","transactionName":"YVZRMBZSWUZRUE1eDVgccgcQWlhbH3BYRQdTQWMIBUpSRx9FUFIVBAI=","queueTime":0,"applicationTime":118,"atts":"TRFSRl5ISkg=","errorBeacon":"bam-cell.nr-data.net","agent":""}</script></body>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam-cell.nr-data.net","licenseKey":"d52dd270f3","applicationID":"295558491","transactionName":"YVZRMBZSWUZRUE1eDVgccgcQWlhbH3BYRQdTQWMIBUpSRx9FUFIVBAI=","queueTime":0,"applicationTime":120,"atts":"TRFSRl5ISkg=","errorBeacon":"bam-cell.nr-data.net","agent":""}</script></body>
 </html>

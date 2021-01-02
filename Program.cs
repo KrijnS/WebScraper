@@ -12,12 +12,15 @@ namespace WebScraper
         static void Main(string[] args)
         {
             Program program = new Program();
-            string playerUrl = "https://www.futwiz.com/en/fifa21/career-mode/player/robert-lewandowski/12";
+            string playerUrl = "https://www.futwiz.com/en/fifa21/career-mode/player/joshua-kimmich/111";
             //program.GetPlayers("https://www.futwiz.com/en/fifa21/career-mode/players?minrating=1&maxrating=99&teams%5B%5D=21&leagues[]=19&order=rating&s=desc");
             //program.ReadURLInTemp("https://www.futwiz.com/en/fifa21/career-mode/player/robert-lewandowski/12");
             Console.WriteLine(program.GetPlayerName(playerUrl));
             Console.WriteLine(program.GetPlayerOvr(playerUrl));
             Console.WriteLine(program.GetPlayerPot(playerUrl));
+            Console.WriteLine(program.GetContractLength(playerUrl));
+            Console.WriteLine(program.GetPlayerAge(playerUrl));
+            Console.WriteLine(program.GetPlayerPos(playerUrl));
 
             int[] stats = program.GetPlayerStats(playerUrl);
             for(int i = 0; i < stats.Length; i++)
@@ -321,10 +324,26 @@ namespace WebScraper
             return Int32.Parse(s.Split('>')[1].Split('<')[0]);
         }
         
-        public void GetContractLength(string url)
+        public int GetContractLength(string url)
         {
-            Console.WriteLine(GetString(url, "<div class=/u0022cprofile-inforbar-label ml", '>', 3));
-            //return Int32.Parse(GetString(url, "<div class=/u0022cprofile-inforbar-label ml-20", '>', 3).Split('<')[0]);
+            if (CheckNumberOfLineStarts(url, "<div class=\u0022realfacebutton\u0022>Real Face</div>") == 0)
+            {
+                return Int32.Parse(GetString(url, "<div class=\u0022cprofile-inforbar-label ml-20", '>', 3).Split('<')[0]);
+            }
+            else
+            {
+                return Int32.Parse(GetString(url, "<div class=\u0022realfacebutton\u0022>Real Face</div> <div class=\u0022cprofile-inforbar-label ml-20\u0022>", '>', 5).Split('<')[0]);
+            }          
+        }
+
+        public int GetPlayerAge(string url)
+        {
+            return Int32.Parse(GetString(url, "<p class=\u0022ppdb-d\u0022>", '>',1).Split('<')[0]);
+        }
+
+        public string GetPlayerPos(string url)
+        {
+            return GetString(url, "<div class=\u0022cplayerprofile-mobinfo\u0022>", '>', 2).Split('<')[0].Replace(", ", "/");
         }
     }
 }
