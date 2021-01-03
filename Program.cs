@@ -14,23 +14,20 @@ namespace WebScraper
             Program program = new Program();
             string playerUrl = "https://www.futwiz.com/en/fifa21/career-mode/player/joshua-kimmich/111";
             //program.GetPlayers("https://www.futwiz.com/en/fifa21/career-mode/players?minrating=1&maxrating=99&teams%5B%5D=21&leagues[]=19&order=rating&s=desc");
-            //program.ReadURLInTemp("https://www.futwiz.com/en/fifa21/career-mode/player/robert-lewandowski/12");
-            Console.WriteLine(program.GetPlayerName(playerUrl));
-            Console.WriteLine(program.GetPlayerOvr(playerUrl));
-            Console.WriteLine(program.GetPlayerPot(playerUrl));
-            Console.WriteLine(program.GetContractLength(playerUrl));
-            Console.WriteLine(program.GetPlayerAge(playerUrl));
-            Console.WriteLine(program.GetPlayerPos(playerUrl));
 
-            int[] stats = program.GetPlayerStats(playerUrl);
-            for(int i = 0; i < stats.Length; i++)
-            {
-                Console.WriteLine(stats[i]);
-            }
-            program.GetContractLength(playerUrl);
-            //Console.WriteLine(program.GetString("https://www.futwiz.com/en/fifa21/career-mode/player/steven-berghuis/3796", "<div style='\u0022'font-size:14px;", ">", 1).Split('|')[0]);
+            Console.WriteLine(program.PlayerToString(playerUrl));
+
             Console.WriteLine("done");
             Console.Read();
+        }
+
+        public void ReadToTempFile(string url)
+        {
+            WebClient client = new WebClient();
+            client.Headers.Add("User-Agent", "C# console program");
+
+            string content = client.DownloadString(url);
+            File.WriteAllText(tempFile, content);
         }
 
         //get all pages related with url and identifier
@@ -54,14 +51,18 @@ namespace WebScraper
         }
 
         //get string split at specific char
-        public string GetString(string url, string identifier, char split, int stringSplit)
+        public string GetString(string url, string identifier, char split, int stringSplit, bool download)
         {
             string result = null;
-            WebClient client = new WebClient();
-            client.Headers.Add("User-Agent", "C# console program");
+            if (download)
+            {
+                WebClient client = new WebClient();
+                client.Headers.Add("User-Agent", "C# console program");
 
-            string content = client.DownloadString(url);
-            File.WriteAllText(tempFile, content);
+                string content = client.DownloadString(url);
+                File.WriteAllText(tempFile, content);
+            }
+            
             string[] lines = File.ReadAllLines(tempFile);
             for (int i = 0; i < lines.Length; i++)
             {
@@ -72,11 +73,11 @@ namespace WebScraper
             }
             return result;
         }
-        
+
         //parse league name from league url
         public string GetLeagueName(string url, string localUrl)
         {
-            return GetString(url, "<a href=" + '\u0022' + localUrl, '>', 1).Split('<')[0];
+            return GetString(url, "<a href=" + '\u0022' + localUrl, '>', 1, true).Split('<')[0];
 
         }
 
@@ -107,7 +108,7 @@ namespace WebScraper
             string leagueName = GetLeagueName(url, localUrl);
             byte[] bytes = Encoding.Default.GetBytes(leagueName);
             leagueName = Encoding.UTF8.GetString(bytes);
-            int teamAmount = CheckNumberOfLineStarts(url, "<h5>");
+            int teamAmount = CheckNumberOfLineStarts(url, "<h5>", true);
             return leagueName + " #teams " + teamAmount;
         }
 
@@ -124,14 +125,19 @@ namespace WebScraper
         }
 
         //check how many lines start with specific starting sequence
-        public int CheckNumberOfLineStarts(string url, string lineStart)
+        public int CheckNumberOfLineStarts(string url, string lineStart, bool download)
         {
             int number = 0;
-            WebClient client = new WebClient();
-            client.Headers.Add("User-Agent", "C# console program");
 
-            string content = client.DownloadString(url);
-            File.WriteAllText(tempFile, content);
+            if (download)
+            {
+                WebClient client = new WebClient();
+                client.Headers.Add("User-Agent", "C# console program");
+
+                string content = client.DownloadString(url);
+                File.WriteAllText(tempFile, content);
+            }
+            
             string[] lines = File.ReadAllLines(tempFile);
             for (int i = 0; i < lines.Length; i++)
             {
@@ -147,7 +153,7 @@ namespace WebScraper
         public string[] GetAllOccurences(string url, string identifier, char split, int splitNumber)
         {
             //initialise string array on number of occurences
-            string[] values = new string[CheckNumberOfLineStarts(url, identifier)];
+            string[] values = new string[CheckNumberOfLineStarts(url, identifier, true)];
             int index = 0;
             WebClient client = new WebClient();
             client.Headers.Add("User-Agent", "C# console program");
@@ -232,7 +238,7 @@ namespace WebScraper
         //get number of players of specific team from team url
         public int GetNumberOfPlayers(string url)
         {
-            return CheckNumberOfLineStarts(url, "<a href=\u0022/en/fifa21/career-mode/player/") / 2;
+            return CheckNumberOfLineStarts(url, "<a href=\u0022/en/fifa21/career-mode/player/", true) / 2;
         }
 
         //return array of budgets in double form from league url
@@ -244,18 +250,21 @@ namespace WebScraper
             //convert strings via ConvertBudgets method
             for (int i = 0; i < values.Length; i++)
             {
-                budgets[i] = ConvertBudget(values[i]);
+                budgets[i] = ConvertBudget(values[i], true);
             }
             return budgets;
         }
 
         //Convert strings of budgets to doubles
-        public double ConvertBudget(string value)
+        public double ConvertBudget(string value, bool club)
         {
             //initially budget is 0
             double budget = 0;
             //remove excess from string
-            value = value.Split('<')[0].Remove(0, 1).Split('\u00A3')[1];
+            if (club)
+            {
+                value = value.Split('<')[0].Remove(0, 1).Split('\u00A3')[1];
+            }
             //convert from K to 1.000 and M to 1.000.000
             if (value.Contains("M")) { value = value.Split('M')[0]; budget = Convert.ToDouble(value) * 1000000; }
             else if (value.Contains("K")) { value = value.Split('K')[0]; budget = Convert.ToDouble(value) * 1000; }
@@ -265,28 +274,28 @@ namespace WebScraper
         }
 
         //return player name from player url
-        public string GetPlayerName(string url)
+        public string GetPlayerName()
         {
-            return GetString(url, "<h1>", '>', 1).Split('<')[0];
+            return GetString(tempFile, "<h1>", '>', 1, false).Split('<')[0];
         }
 
         //return player overall from player url
-        public int GetPlayerOvr(string url)
+        public int GetPlayerOvr()
         {
-            return Int32.Parse(GetString(url, "<div class=\u0022cplayerprofile-ovr\u0022><p class=\u0022cprofstat\u0022>", '>', 2).Split('<')[0]);
+            return Int32.Parse(GetString(tempFile, "<div class=\u0022cplayerprofile-ovr\u0022><p class=\u0022cprofstat\u0022>", '>', 2, false).Split('<')[0]);
         }
 
         //return player potential from player url
-        public int GetPlayerPot(string url)
+        public int GetPlayerPot()
         {
-            return Int32.Parse(GetString(url, "<div class=\u0022cplayerprofile-pot\u0022><p class=\u0022cprofstat\u0022>", '>', 2).Split('<')[0]);
+            return Int32.Parse(GetString(tempFile, "<div class=\u0022cplayerprofile-pot\u0022><p class=\u0022cprofstat\u0022>", '>', 2, false).Split('<')[0]);
         }
 
         //parse all player stats from player url
-        public int[] GetPlayerStats(string url)
+        public int[] GetPlayerStats()
         {
             int[] stats = new int[6];
-            string[] statStrings = GetStatStrings(url);
+            string[] statStrings = GetStatStrings();
 
             for(int i = 0; i < statStrings.Length; i++)
             {
@@ -296,16 +305,11 @@ namespace WebScraper
         }
 
         //get all strings containing a stat for players
-        public string[] GetStatStrings(string url)
+        public string[] GetStatStrings()
         {
             string[] stats = new string[6];
             int counter = 0;
-
-            WebClient client = new WebClient();
-            client.Headers.Add("User-Agent", "C# console program");
-
-            string content = client.DownloadString(url);
-            File.WriteAllText(tempFile, content);
+           
             string[] lines = File.ReadAllLines(tempFile);
             for (int i = 0; i < lines.Length; i++)
             {
@@ -324,26 +328,64 @@ namespace WebScraper
             return Int32.Parse(s.Split('>')[1].Split('<')[0]);
         }
         
-        public int GetContractLength(string url)
+        //get contract length of player
+        public int GetContractLength()
         {
-            if (CheckNumberOfLineStarts(url, "<div class=\u0022realfacebutton\u0022>Real Face</div>") == 0)
+            //check if player has real face, this would change the identifier of the contract string
+            if (CheckNumberOfLineStarts(tempFile, "<div class=\u0022realfacebutton\u0022>Real Face</div>", false) == 0)
             {
-                return Int32.Parse(GetString(url, "<div class=\u0022cprofile-inforbar-label ml-20", '>', 3).Split('<')[0]);
+                return Int32.Parse(GetString(tempFile, "<div class=\u0022cprofile-inforbar-label ml-20", '>', 3, false).Split('<')[0]);
             }
             else
             {
-                return Int32.Parse(GetString(url, "<div class=\u0022realfacebutton\u0022>Real Face</div> <div class=\u0022cprofile-inforbar-label ml-20\u0022>", '>', 5).Split('<')[0]);
+                return Int32.Parse(GetString(tempFile, "<div class=\u0022realfacebutton\u0022>Real Face</div> <div class=\u0022cprofile-inforbar-label ml-20\u0022>", '>', 5, false).Split('<')[0]);
             }          
         }
 
-        public int GetPlayerAge(string url)
+        //get player age
+        public int GetPlayerAge()
         {
-            return Int32.Parse(GetString(url, "<p class=\u0022ppdb-d\u0022>", '>',1).Split('<')[0]);
+            return Int32.Parse(GetString(tempFile, "<p class=\u0022ppdb-d\u0022>", '>', 1, false).Split('<')[0]);
         }
 
-        public string GetPlayerPos(string url)
+        //get player position and transform in desired string
+        public string GetPlayerPos()
         {
-            return GetString(url, "<div class=\u0022cplayerprofile-mobinfo\u0022>", '>', 2).Split('<')[0].Replace(", ", "/");
+            return GetString(tempFile, "<div class=\u0022cplayerprofile-mobinfo\u0022>", '>', 2, false).Split('<')[0].Replace(", ", "/");
+        }
+
+        public double GetPlayerWorth()
+        {
+            string value = GetString(tempFile, "<div class=\u0022cprofile-inforbar-label\u0022 style=\u0022margin-left:10px;", '>', 3, false).Split('<')[0].Split(';')[1];
+            return ConvertBudget(value, false);
+        }
+
+        public double GetPlayerWage()
+        {
+            string value = GetString(tempFile, "<div class=\u0022cprofile-inforbar-label\u0022>Wage", '>', 3, false).Split('<')[0].Split(';')[1];
+            return ConvertBudget(value, false);
+        }
+
+        public string PlayerToString(string url)
+        {
+            ReadToTempFile(url);
+            StringBuilder toString = new StringBuilder();
+            toString.Append(GetPlayerName() + ",");
+            toString.Append(GetPlayerPos() + ",");
+            toString.Append(GetPlayerOvr() + ",");
+            toString.Append(GetPlayerPot() + ",");
+            toString.Append(GetPlayerAge() + ",");
+            toString.Append(GetPlayerWorth() + ",");
+            toString.Append(GetPlayerWage() + ",");
+            toString.Append(GetContractLength() + ",");
+
+            int[] stats = GetPlayerStats();
+            for (int i = 0; i < stats.Length-1; i++)
+            {
+                toString.Append(stats[i] + ",");
+            }
+            toString.Append(stats[stats.Length-1]);
+            return toString.ToString();
         }
     }
 }

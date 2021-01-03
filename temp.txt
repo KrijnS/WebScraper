@@ -43,7 +43,7 @@
 <script async src="/dist/setups/futwiz.min.js?r=451"></script>
 <script src="/assets/js/modernizr.js"></script>
 <link href="/assets/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-<link rel="stylesheet" href="/assets/css/global.css?r=477" type="text/css">
+ <link rel="stylesheet" href="/assets/css/global.css?r=477" type="text/css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css" />
 <link href="https://fonts.googleapis.com/css?family=Maven+Pro:400,500,700&display=swap" rel="stylesheet">
 <link rel="shortcut icon" href="/favicon.ico">
@@ -102,8 +102,8 @@
 <li><a href="/en/fifa20/career-mode/players">FIFA 20 Career Mode Players</a></li>
 </ul>
 </li>
-<li class="sub">
- <a href="Javascript:;">Market <i class="fa fa-chevron-right"></i></a>
+ <li class="sub">
+<a href="Javascript:;">Market <i class="fa fa-chevron-right"></i></a>
 <ul class="menu">
 <li><a href="/en/market/overall/playstation/live">Overall Market</a></li>
 <li><a href="/en/market/baseicons/playstation/live">Base Icons</a></li>
@@ -232,7 +232,7 @@
 <a href="">FIFA Generations</a>
 <ul class="dropright-menu" style="max-height:200px;overflow-y:auto;">
 <li><a href="/en/fifa20/players">FIFA 20 Players</a></li>
- <li><a href="/en/fifa19/players">FIFA 19 Players</a></li>
+<li><a href="/en/fifa19/players">FIFA 19 Players</a></li>
 <li><a href="/en/fifa18/players">FIFA 18 Players</a></li>
 <li><a href="/en/fifa18/worldcup/players">FIFA 18 Worldcup Players</a></li>
 <li><a href="/en/fifa17/players">FIFA 17 Players</a></li>
@@ -282,7 +282,7 @@
 </ul>
 </li>
 <li>
-<a href="Javascript:;" class="topnavdraft">Trading</a>
+ <a href="Javascript:;" class="topnavdraft">Trading</a>
 <ul class="mainnav-submenu">
 <li class="dropdown">
 <a href="Javascript:;">Market <i class="fa fa-chevron-right"></i></a>
@@ -334,7 +334,7 @@
 <li><a href="/en/fut-champions/weekly-leaderboards/current/all/xbox">Weekly Leaderboard</a></li>
 <li><a href="/en/fut-champions/rewards">FUT Champions Rewards</a></li>
 <li class="dropdown">
-<a href="">Events</a>
+ <a href="">Events</a>
 <ul class="dropright-menu">
 <li><a href="/en/fut-champions/champions-cup/fifa20/cup3/groups">FIFA 20 Champions Cup 3</a></li>
 <li><a href="/en/fut-champions/champions-cup/fifa20/cup2/groups">FIFA 20 Champions Cup 2</a></li>
@@ -395,8 +395,8 @@ Twitter
 <li>
 <a href="https://www.twitter.com/futwiz" target="_BLANK">
 <i class="fab fa-twitter"></i>
-</a>
- </li>
+ </a>
+</li>
 <li>
 <a href="Javascript:;" onclick="$('#taxcalc').appendTo('body').modal('show');">
 <i class="fa fa-calculator"></i>
@@ -720,7 +720,7 @@ Sell For
 <div class="cprofile-inforbar-label">Wage</div> <div class="cprofile-inforbar-stat wagevalue">&pound;130K</div>
 </div>
 </div>
-</div>
+ </div>
 <div class="playerprofile-ad">
 <div class="ad" id="nn_mpu1"></div>
 </div>
@@ -800,7 +800,7 @@ Sell For
 <div class="title">
 <div class="pull-left padtop-2">Sho</div>
 <div class="highbarcolour att2bar">73</div>
- <div class="clearfix"></div>
+<div class="clearfix"></div>
 </div>
 <div class="individual-stat-container" data-percentage="81">
 <div class="individual-stat-bar-label">Positioning<span class="positioningboost" style="padding-left:10px;font-size:12px;"></span></div>
@@ -939,7 +939,7 @@ Sell For
 </div>
 <div class="individual-stat-container" data-percentage="73">
 <div class="individual-stat-bar-label">Heading Acc.<span class="headingaccboost" style="padding-left:10px;font-size:12px;"></span></div>
-<div class="individual-stat-bar-stat textcolour headingaccstat">72</div>
+ <div class="individual-stat-bar-stat textcolour headingaccstat">72</div>
 <div class="individual-stat-bar-back"></div>
 <div class="individual-stat-bar-front highbarcolour headingaccbar"></div>
 </div>
@@ -986,7 +986,7 @@ Sell For
 <div class="individual-stat-bar-label">Jumping<span class="jumpingboost" style="padding-left:10px;font-size:12px;"></span></div>
 <div class="individual-stat-bar-stat textcolour jumpingstat">79</div>
 <div class="individual-stat-bar-back"></div>
- <div class="individual-stat-bar-front highbarcolour jumpingbar"></div>
+<div class="individual-stat-bar-front highbarcolour jumpingbar"></div>
 </div>
 <div class="individual-stat-container" data-percentage="96">
 <div class="individual-stat-bar-label">Stamina<span class="staminaboost" style="padding-left:10px;font-size:12px;"></span></div>
@@ -1052,7 +1052,7 @@ Sell For
 </div>
 <div class="altpos-pos posrm stat-label-highest">
 <div class="altpos-inner-l1">84</div>
- <div class="altpos-inner-l2">RM</div>
+<div class="altpos-inner-l2">RM</div>
 </div>
 <div class="altpos-pos posrb stat-label-highest">
 <div class="altpos-inner-l1">84</div>
@@ -1256,5 +1256,5 @@ setDview();
 <script src="/assets/js/futwiz-foot.js?8004"></script>
 <script>var sitelanguage = 'en';</script>
 <script src="/assets/js/lazysizes.min.js" async></script>
-<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam-cell.nr-data.net","licenseKey":"d52dd270f3","applicationID":"295558491","transactionName":"YVZRMBZSWUZRUE1eDVgccgcQWlhbH3BYRQdTQWMIBUpSRx9FUFIVBAI=","queueTime":0,"applicationTime":120,"atts":"TRFSRl5ISkg=","errorBeacon":"bam-cell.nr-data.net","agent":""}</script></body>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam-cell.nr-data.net","licenseKey":"d52dd270f3","applicationID":"295558491","transactionName":"YVZRMBZSWUZRUE1eDVgccgcQWlhbH3BYRQdTQWMIBUpSRx9FUFIVBAI=","queueTime":0,"applicationTime":1050,"atts":"TRFSRl5ISkg=","errorBeacon":"bam-cell.nr-data.net","agent":""}</script></body>
 </html>
