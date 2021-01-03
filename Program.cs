@@ -13,21 +13,17 @@ namespace WebScraper
         {
             Program program = new Program();
             string playerUrl = "https://www.futwiz.com/en/fifa21/career-mode/player/joshua-kimmich/111";
-            //program.GetPlayers("https://www.futwiz.com/en/fifa21/career-mode/players?minrating=1&maxrating=99&teams%5B%5D=21&leagues[]=19&order=rating&s=desc");
+            string[] playerUrls = File.ReadAllLines("../../players.txt");
+            string[] players = new string[playerUrls.Length];
 
-            Console.WriteLine(program.PlayerToString(playerUrl));
+            for(int i = 0; i < playerUrls.Length; i++)
+            {
+                players[i] = program.PlayerToString("https://futwiz.com" + playerUrls[i]);
+                Console.WriteLine(players[i]);
+            }
 
             Console.WriteLine("done");
             Console.Read();
-        }
-
-        public void ReadToTempFile(string url)
-        {
-            WebClient client = new WebClient();
-            client.Headers.Add("User-Agent", "C# console program");
-
-            string content = client.DownloadString(url);
-            File.WriteAllText(tempFile, content);
         }
 
         //get all pages related with url and identifier
@@ -368,7 +364,7 @@ namespace WebScraper
 
         public string PlayerToString(string url)
         {
-            ReadToTempFile(url);
+            ReadURLInTemp(url);
             StringBuilder toString = new StringBuilder();
             toString.Append(GetPlayerName() + ",");
             toString.Append(GetPlayerPos() + ",");
